@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
 import { Eye } from 'lucide-react';
+import React from 'react';
+
 
 interface BrandingFolderProps {
   rotation: number;
@@ -160,6 +162,7 @@ export function BrandingFolder({ rotation, title, subtitle, color, logo, link, d
           }}
         />
       </div>
+     
     </motion.div>
   );
 }

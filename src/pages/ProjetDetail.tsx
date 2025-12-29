@@ -54,7 +54,7 @@ export default function ProjetDetail() {
       </motion.div>
 
       {/* Contenu - Dossiers empilés */}
-      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden">
+      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden" style={{ backgroundImage: `url(${textureGray})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>
         <div className="relative" style={{ width: "1200px", height: "850px" }}>
           
           {/* DOSSIER 1 - Beige à droite (au-dessus) */}

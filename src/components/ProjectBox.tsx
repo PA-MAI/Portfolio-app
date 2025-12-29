@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import dataPerso from "../data/dataPerso";
 
 interface ProjectBoxProps {
   project: {
@@ -16,11 +18,14 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
 
   // Choisir la texture en fonction de la couleur
   const isGray = project.color === '#9a9a9a' || project.color === '#a8a8a8';
+  const isText = project.color === '#e8dcc8'|| project.color === '#f0e6d2';
   const textureUrl = isGray 
     ? 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
     : 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
 
   const isComingSoon = project.id >= 1000;
+  const poignée = dataPerso.poigneeData[0]?.image;
+  const etiquette = dataPerso.etiquetteData[0]?.image;
 
   const handleClick = () => {
     if (!isComingSoon) {
@@ -45,7 +50,9 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
       onClick={handleClick}
       className={isComingSoon ? "select-none" : "cursor-pointer select-none"}
       style={{
+        backgroundImage: `url(${textureUrl})`,
         perspective: "1200px",
+        margin: "10px",
         transformStyle: "preserve-3d",
         opacity: isComingSoon ? 0.6 : 1,
       }}
@@ -63,6 +70,18 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
             : '10px 20px 40px rgba(0,0,0,0.8)',
         }}
       >
+        <div className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            backgroundImage: `url(${textureUrl})`,
+            
+            padding: "40px",
+            margin: "0px",
+            boxShadow: `
+              inset 0 0 60px rgba(0,0,0,0.15),
+              inset 0 0 20px rgba(0,0,0,0.1),
+              inset 8px 8px 20px rgba(0,0,0,0.1)
+            `,
+        }}>
         {/* Texture réaliste overlay - Première couche */}
         <div 
           className="absolute inset-0 pointer-events-none z-[1]"
@@ -134,32 +153,69 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
           }}
         />
 
-        {/* Logo circulaire ØRG au centre */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
+        {/* Logo circulaire  au centre */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10" style={{ justifyContent: "end", flexDirection: "column", gap: "40px" }}>
           <div 
             className="flex items-center justify-center border-4 border-white/70 shadow-lg"
-            style={{
-              width: "140px",
-              height: "140px",
+              style={{
+              width: "160px",
+              height: "160px",
               borderRadius: "50%",
+              gap: "12px",
+              
               backgroundColor: 'rgba(255,255,255,0.1)',
+              boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.3)',
+              //backdropFilter: 'blur(6px)',
             }}
-          >
-            <span 
-              className="text-white/90 tracking-[0.2em]" 
-              style={{ 
-                fontSize: "38px",
-                fontFamily: 'serif',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-              }}
             >
-              Projet
+              {/* Logo et texte */}
+              <span >
+              <img src={etiquette} alt="Étiquette" className="mx-auto relative " width="150"
+                style={{ top: "45px", padding: "0px", marginBottom: "20px" }} />
+              <span className="tracking-[0.2em] relative" 
+                style={{ 
+                  color: isText ? '#c9b596' : '#d2c2a6',
+                  top: "-50px",
+                  left: "27px",
+                  fontSize: "28px",
+                  fontFamily: 'serif',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+              }}>@Projet</span>
             </span>
+          </div>
+          {/* Poignée de la boîte */}
+            <div className="mt-4 text-center relative"
+              style={{
+                //boxShadow: "inset 0 4px 8px rgba(0,0,0,0.2)",
+                padding: "10px",
+                paddingRight: "10px",
+                paddingLeft: "10px",
+                marginBottom: "60px",
+                height: "80px",
+                width: "190px"
+              }} >
+            <img src={poignée} alt="relative top-20" className="poignée mx-auto" style={{
+                boxShadow: " 0 4px 8px rgba(0,0,0,0.5)",
+                borderRadius: "8px",
+                //top: "-1px",
+                padding: "0px",
+                paddingRight: "0px",
+                paddingLeft: "0px",
+                //marginBottom: "40px",
+                height: "120px",
+                width: "180px"
+              }} />
           </div>
         </div>
 
         {/* Texte en haut */}
-        <div className="absolute top-8 left-8 right-8 z-10">
+          <div className="relative flex  top-8   z-10"
+            style={{
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              top: "165px",
+        }}>
           <p 
             className="text-white/60 tracking-[0.15em] mb-2" 
             style={{ fontSize: "10px" }}
@@ -176,7 +232,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
             {project.title}
           </h3>
         </div>
-
+      </div>
         {/* Texte en bas */}
         <div className="absolute bottom-8 left-8 right-8 z-10">
           <p 
@@ -199,6 +255,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
           }}
         />
       </div>
+      
     </motion.div>
   );
 }

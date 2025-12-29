@@ -7,6 +7,7 @@ interface CardData {
   subtitle?: string;
   image?: string;
   link?: string;
+  images?: string[];
 }
 
 interface CardStackProps {
@@ -70,6 +71,7 @@ export function CardStack({
         const hoverY = -Math.cos((angle * Math.PI) / 180) * radius + radius;
 
         return card.isBusiness ? (
+          // Carte de type BusinessCard
           <motion.div
             key={i}
             initial={{ x: 0, y: 0, rotate: baseTilt , zIndex: 99 + i }}
@@ -97,6 +99,7 @@ export function CardStack({
             />
           </motion.div>
         ) : (
+            // Carte standard
           <motion.a
             key={i}
             href={card.link}
@@ -174,10 +177,25 @@ export function CardStack({
                 opacity: 0.7
               }}
             />
-            
-            {card.image && (
-              <img src={card.image} alt={card.title} className="w-16 h-16 mb-2 object-contain relative z-10" />
-            )}
+            {/* Contenu de la carte */}
+              {card.images && (
+                <div className="flex flex-col space-x-2 mb-2" style={{ flexDirection: 'column', width: '40px', height: '80px' }}>
+                  {card.images.length === 1 ? (
+                    <img src={card.images[0]} alt={card.title} className="w-16 h-16 object-contain relative z-10 w-40 h-40" />
+                  ) : (
+                    card.images.map((img, idx) => (
+                      <img key={idx} src={img} alt={card.title} className="w-16 h-16 object-contain relative z-10 w-40 h-40" />
+                    ))
+                  )}
+                </div>
+              )}
+              {card.image && (
+                <div className="mb-2">
+                  <img src={card.image} alt={card.title} className="w-16 h-16 object-contain relative z-10" />
+                </div>
+              )}
+
+
             {card.title && (
               <h4 className="text-white relative z-10" style={{ fontWeight: 'bold', fontSize: '14px' }}>{card.title}</h4>
             )}

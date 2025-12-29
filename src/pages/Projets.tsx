@@ -6,7 +6,8 @@ import DataPerso from "../data/dataPerso";
 
 export default function Projets() {
   const navigate = useNavigate();
-
+  const texture1 = 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
+  const texture2 = 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
   // Créer un tableau avec les vrais projets + des projets "à venir"
   const totalBoxes = 25; // 5 colonnes × 5 rangées
   const allProjects = [
@@ -15,6 +16,8 @@ export default function Projets() {
       id: 1000 + i,
       title: "PROJET À VENIR",
       subtitle: "En développement",
+      
+      
       color: "#a8a8a8",
       status: "À venir",
       technologies: [],
@@ -25,7 +28,13 @@ export default function Projets() {
   ];
 
   return (
-    <div className="w-screen h-screen" style={{ backgroundColor: '#e8dcc8' }}>
+    <div className="w-screen h-screen"
+      style={{
+        backgroundColor: '#e8dcc8',
+       // backgroundImage: `url(${texture2})`,
+          backgroundRepeat: "repeat",
+         // backgroundSize: "cover",
+       }}>
       {/* Bandeau de navigation en haut - FULL WIDTH */}
       <motion.div
         initial={{ y: -100 }}
@@ -33,19 +42,20 @@ export default function Projets() {
         transition={{ duration: 0.6 }}
         className="w-full shadow-2xl flex-shrink-0"
         style={{ 
+          
           height: "80px",
           backgroundColor: '#5d4a3a',
           alignContent: "center",
           
         }}
       >
-        <div className="h-full flex items-center px-12" style={{justifyContent: "space-between", width: "100%", marginRight: "10px", marginLeft: "10px", alignItems:"center" }}>
+        <div className="h-full flex items-center px-12" style={{justifyContent: "space-around", width: "100%", marginRight: "10px", marginLeft: "10px", alignItems:"center" }}>
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px" }}>
+            <span className="tracking-[0.15em]" style={{ fontSize: "16px",cursor: "pointer" }}>
               RETOUR À L'ACCUEIL
             </span>
           </button>
@@ -59,7 +69,12 @@ export default function Projets() {
       </motion.div>
 
       {/* Grille de projets - 5 colonnes */}
-      <div className="flex-1 flex-row overflow-y-auto py-16 px-12">
+      <div className="flex-1 flex-row overflow-y-auto py-16 px-12 to-transparent"
+        style={{
+          backgroundImage: `url(${texture1})`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "cover"
+        }}>
         <div
           className=" flex gap-x-4 gap-y-1 mx-auto shadow-xl/20"
           style={{

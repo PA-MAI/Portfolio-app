@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "motion/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -7,6 +8,9 @@ export default function Experiences() {
   const navigate = useNavigate();
   const { id } = useParams();
   const experience = DataPerso.experiencesData.find(p => p.id === parseInt(id || "0"));
+
+ const experiencesList = DataPerso.experiencesData;
+  const [selectedExperience, setSelectedExperience] = React.useState(experience);
 
   // Textures
   const textureBeige = 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
@@ -25,13 +29,13 @@ export default function Experiences() {
           backgroundColor: '#5d4a3a'
         }}
       >
-        <div className="h-full flex items-center px-12" style={{justifyContent: "space-between", width: "100%", marginLeft: "10px", marginRight: "10px", alignItems:"center" }}>
+        <div className="h-full flex items-center px-12" style={{justifyContent: "space-around", width: "100%", marginLeft: "10px", marginRight: "10px", alignItems:"center" }}>
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px" }}>
+            <span className="tracking-[0.15em]" style={{ fontSize: "16px", cursor: "pointer" }}>
               RETOUR ACCUEIL
             </span>
           </button>
@@ -45,7 +49,8 @@ export default function Experiences() {
       </motion.div>
 
       {/* Contenu - Dossiers empilés */}
-      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden">
+
+      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden " style={{ backgroundImage: `url(${textureGray})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>
         <div className="relative" style={{ width: "1200px", height: "850px" }}>
           
           {/* DOSSIER 1 - Beige à droite (au-dessus) */}
@@ -95,7 +100,7 @@ export default function Experiences() {
             />
             
             <div 
-              className="flex flex-row justify-between align-end absolute inset-0 pointer-events-none z-[3]"
+              className="flex flex-col justify-center align-end absolute inset-0 pointer-events-none z-[3]"
               style={{
                 background: `
                   radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%),
@@ -107,7 +112,7 @@ export default function Experiences() {
             />
 
             {/* Logo circulaire en haut */}
-            <div className="absolute z-10 " style={{ top: "20px", left: "20px", justifyContent: "space-between",
+            <div className="absolute z-10 " style={{ top: "20px", left: "60px", justifyContent: "space-between",
               flexDirection: "row", alignItems: "center", display: "flex" }}>
               <div 
                 className="flex items-center justify-center border-4 border-white/60 inset-shadow-sm"
@@ -124,42 +129,88 @@ export default function Experiences() {
                 <span 
                   className=" text-white/90 tracking-[0.2em]" 
                   style={{ 
-                    fontSize: "42px",
+                    color: "#c9b596",
+                    fontSize: "28px",
                     fontFamily: 'serif',
                     textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
                   }}
                 >
-                  ID@
+                  @EXPERIENCE
                 </span>
               </div>
               {/* Informations */}
-              <div className="absolute top-16 left-116 right-16 text-white/80 z-10 " style={{ marginTop: "150px", paddingLeft: "320%", height: "280px" }}>
+              <div className="absolute top-16 left-116 right-16 text-white/80 z-10 " style={{ marginTop: "150px", paddingLeft: "260%", height: "280px" }}>
                 <p className="mb-4 tracking-[0.15em] text-white/90" style={{ fontSize: "18px" }}>
                 </p>
-                <p className="mb-10 tracking-[0.15em] text-white/90" style={{ fontSize: "13px" }}>
-                  @{experience.title.toLowerCase().replace(/\s+/g, '')}
+                <p className="mb-10 tracking-[0.15em] text-white/90" style={{ fontSize: "13px" ,width: "280px"}}>
+                  @{selectedExperience.title.toUpperCase()}
                 </p>
-
+                <br/>
                 <div className="space-y-3 text-white/90" style={{ fontSize: "12px" }}>
-                  <p className="tracking-[0.12em] text-white/90 ">STATUS: {experience.status}</p>
+                  <p className="tracking-[0.12em] text-white/90 ">STATUS: {selectedExperience.status},<br/>{selectedExperience.company},<br/>{selectedExperience.duration}</p>
+                  <br></br>
                   <p className="tracking-[0.12em] text-white/90 mt-6">TECHNOLOGIES:</p>
-                  {experience.company}, {experience.duration}
-                  {experience.technologies.map((tech, index) => (
+                  {selectedExperience.technologies.map((tech, index) => (
                     <p key={index} className="tracking-[0.12em] text-white/90 ">- {tech}</p>
                   ))}
                 </div>
 
                 <div className="mt-10 pt-6 border-t text-white/90 border-white/20">
                   <p className="tracking-[0.12em] opacity-70 text-white/90 " style={{ fontSize: "11px" }}>
-                    {experience.detail}
+                    {selectedExperience.detail}
                   </p>
                 </div>
               </div>
-              
             </div>
 
-            
           </motion.div>
+           {/* Onglets horizontaux */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 50, rotateZ: 1 }}
+                      animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+          
+                      className="flex flex-row absolute top-14 -left-140 items-stretch gap-30 z-40 rounded-r-xl"
+                      style={{
+                          opacity: 0.8,
+                          flexDirection: "column",
+                          gap: "20px",
+                          padding: "8px",
+                          right: "1%",
+                          top: "50px",
+                      }}
+                    >
+                      {experiencesList.map((dip) => (
+                        <button
+                          key={dip.id}
+                          onClick={() => setSelectedExperience(dip)}
+                          className={`w-14 h-40 flex items-center justify-center
+                            text-[11px] tracking-[0.2em]
+                            rounded-r-xl shadow-xl
+                            ${
+                              selectedExperience.id === dip.id
+                                ? "bg-[#5d4a3a] text-white"
+                                : "bg-[#e6d8bf] text-[#5d4a3a]"
+                            }
+                          `}
+                          style={{
+                            backgroundSize: 'cover',
+                            backgroundImage: `url(${textureBeige})`,
+                            backgroundColor: "#c9b596",
+                            backgroundPosition: 'center',
+                            //mixBlendMode: 'multiply',
+                            //writingMode: "vertical-rl",
+                            textOrientation: "mixed",
+                            borderRadius: "0px 20px 20px 0px",
+                            padding: "18px",
+                            cursor: "pointer",
+                            
+                          }}
+                        >
+                          {dip.title}
+                        </button>
+                      ))}
+                    </motion.div>
 
           {/* DOSSIER 2 - Gris au milieu */}
           <motion.div
@@ -215,10 +266,10 @@ export default function Experiences() {
             <div className="absolute inset-0 flex padding-20 justify-center z-10">
               <div className="text-center text-white/80 px-16">
                 <p className="mb-6 tracking-[0.15em] text-white/60" style={{ fontSize: "13px", paddingTop: "20px", paddingLeft: "20px" }}>
-                  DISCOVER WHERE SUCCESS RESIDES.
+                  ENTREPRISE
                 </p>
-                <h2 className="tracking-[0.15em] leading-tight" style={{ color: "white", fontSize: "26px", padding: "20px" }}>
-                  <img src={experience.certificat} alt="Photo Certificat de travail" />
+                <h2 className="tracking-[0.15em] leading-tight" style={{ color: "white", fontSize: "26px", padding: "0px" }}>
+                  <img src={selectedExperience.certificat} alt="Logo société" style={{ borderRadius: "12px"}}/>
                   
                 </h2>
               </div>
@@ -233,7 +284,7 @@ export default function Experiences() {
             className="absolute rounded-2xl shadow-2xl overflow-hidden"
             style={{
               right: "42.5%",
-              top: "360px",
+              top: "55%",
               width: "40%",
               height: "90%",
               backgroundColor: "#5d4a3a",
@@ -297,21 +348,21 @@ export default function Experiences() {
             </div>
 
             {/* Nom en haut */}
-            <div className="absolute top-12 left-12 text-white/80 z-10">
+            <div className="absolute top-22 left-12 text-white/80 z-10">
               <p className="tracking-[0.2em]" style={{ fontSize: "26px", paddingTop: "20px", paddingLeft: "80px", color:"white" }}>
-                {experience.title}
+                {selectedExperience.title}
               </p>
             </div>
 
             {/* Description en bas */}
             <div className="absolute bottom-16 left-12 right-12 z-10">
-              <p className="text-blue/30 tracking-[0.15em] mb-8" style={{ fontSize: "22px" , paddingTop: "60px", paddingLeft: "80px" }}>
-                {experience.title.toLowerCase().replace(/\s+/g, '')}.com
+              <p className="text-blue/30 tracking-[0.15em] mb-8" style={{ fontSize: "22px" , paddingTop: "90px", paddingLeft: "80px" }}>
+                {selectedExperience.company.toLowerCase()}
               </p>
               
-              <p className="text-white/90 tracking-wide leading-relaxed" style={{ fontSize: "15px", paddingTop: "5px", paddingLeft: "80px" }}>
-                {experience.company}
-              </p>
+              {/*<p className="text-white/90 tracking-wide leading-relaxed" style={{ fontSize: "15px", paddingTop: "5px", paddingLeft: "80px" }}>
+                //{selectedExperience.company}
+              </p>*/}
             </div>
           </motion.div>
 

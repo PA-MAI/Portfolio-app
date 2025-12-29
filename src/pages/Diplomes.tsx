@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, MoveRight } from "lucide-react";
 import DataPerso from "../data/dataPerso";
+import { CarrouselPhoto } from "../components/carrouselPhoto";
 
 export default function Diplomes() {
   const navigate = useNavigate();
@@ -28,13 +29,13 @@ export default function Diplomes() {
           backgroundColor: '#5d4a3a'
         }}
       >
-        <div className="h-full flex items-center px-12" style={{justifyContent: "space-between", width: "100%", marginLeft: "10px", marginRight: "10px", alignItems:"center" }}>
+        <div className="h-full flex items-center px-12" style={{justifyContent: "space-around", width: "100%", marginLeft: "10px", marginRight: "10px", alignItems:"center" }}>
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px" }}>
+            <span className="tracking-[0.15em]" style={{ fontSize: "16px", cursor: "pointer" }}>
               RETOUR ACCUEIL
             </span>
           </button>
@@ -48,44 +49,42 @@ export default function Diplomes() {
       </motion.div>
 
       {/* Contenu - Dossiers empilés */}
-      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden">
-        <div className="relative" style={{ width: "1200px", height: "850px" }}>
-          
-          {/* DOSSIER 1 - Beige à droite (au-dessus) */}
-          <motion.div
-            initial={{ opacity: 0, x: 100, rotateZ: 5 }}
-            animate={{ opacity: 1, x: 0, rotateZ: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-between relative rounded-2xl shadow-2xl "
-            style={{
-              right: "-18.5%",
-              top: "16px",
-              width: "55%",
-              height: "98%",
-              backgroundColor: "#c9b596",
-              zIndex: 1,
-              transform: 'rotate(-2deg)',
-              boxShadow: ' 0 0 20px rgba(0,0,0,0.1)',
-              paddingTop: "20px",
-              paddingRight: "10px",
-              paddingLeft: "30%",
-              paddingBottom: "20px",
-            }}
+            <div className="flex-1 flex items-center justify-center p-12 overflow-hidden" style={{ backgroundImage: `url(${textureGray})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>
+              <div className="relative" style={{ width: "1200px", height: "850px" }}>
+                {/* DOSSIER 1 - Beige à droite (au-dessus) */}
+                <motion.div
+                  initial={{ opacity: 0, x: 100, rotateZ: 5 }}
+                  animate={{ opacity: 1, x: 0, rotateZ: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="flex absolute rounded-2xl shadow-2xl overflow-hidden"
+                  style={{
+                    right: "25.5%",
+                    top: "16px",
+                    width: "55%",
+                    height: "98%",
+                    backgroundColor: "#c9b596",
+                    zIndex: 1,
+                    transform: 'rotate(-2deg)',
+                    boxShadow: ' 0 0 20px rgba(0,0,0,0.1)',
+                    paddingTop: "20px",
+                    paddingRight: "10px",
+                    paddingLeft: "30%",
+                    paddingBottom: "20px",
+                  }}
           >
             {/* Texture réaliste overlay */}
             <div 
-              className="absolute inset-0 pointer-events-none z-[1]"
+              className="absolute inset-0 pointer-events-none rounded-2xl shadow-2xl  z-[1]"
               style={{
-                backgroundImage: `url(${textureBeige})`,
+              backgroundImage: `url(${textureBeige})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 mixBlendMode: 'multiply',
                 opacity: 0.5
               }}
             />
-            
             <div 
-              className="absolute inset-0 pointer-events-none z-[2]"
+              className="absolute inset-0 pointer-events-none rounded-2xl shadow-2xl  z-[2]"
               style={{
                 backgroundImage: `url(${textureBeige})`,
                 backgroundSize: 'cover',
@@ -94,9 +93,8 @@ export default function Diplomes() {
                 opacity: 0.2
               }}
             />
-            
             <div 
-              className="flex flex-col justify-center align-end absolute inset-0 pointer-events-none z-[3]"
+              className="flex flex-col justify-center align-end absolute inset-0 rounded-2xl  pointer-events-none z-[3]"
               style={{
                 background: `
                   radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%),
@@ -108,7 +106,8 @@ export default function Diplomes() {
             />
 
             {/* Logo circulaire en haut */}
-            <div className="absolute z-10">
+            <div className="absolute z-10" style={{ top: "20px", left: "60px", justifyContent: "space-between",
+              flexDirection: "row", alignItems: "center", display: "flex" }}>
               <div 
                 className="flex items-center justify-center border-4 border-white/60 inset-shadow-sm"
                 style={{
@@ -119,66 +118,64 @@ export default function Diplomes() {
                   borderRadius: "50%",
                   backgroundColor: 'rgba(255,255,255,0.08)',
                   boxShadow: 'inset 0 0 10px rgba(0,0.2,0.2,0.2)',
-                  
                 }}
               >
                 <span 
                   className=" text-white/90 tracking-[0.2em]" 
                   style={{ 
-                    fontSize: "42px",
+                    color: "#c9b596",
+                    fontSize: "28px",
                     fontFamily: 'serif',
                     textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
                   }}
                 >
-                  ID@
+                  @FORMATION
                 </span>
               </div>
             </div>
 
             {/* Informations */}
-            <div className="absolute top-20 left-16 right-16 text-white/80 z-10 " style={{ marginTop: "148px", marginLeft: "20px", height: "280px" }}>
-              <p className="mb-4 tracking-[0.15em] text-white/90" style={{ fontSize: "18px" }}>
-                HELLO
+            <div className="absolute top-20 left-16 right-16 text-white/80 z-10 " style={{ marginTop: "10px", paddingLeft: "20px", height: "280px" }}>
+              <p className="mb-4 tracking-[0.15em] text-white/90" style={{ fontSize: "18px", fontWeight:"700" }}>
+                DÉTAIL DU DIPLOME
+                <br></br>
               </p>
-              <p className="mb-10 tracking-[0.15em] text-white/90" style={{ fontSize: "13px" }}>
-                @{selectedDiplome.title.toLowerCase().replace(/\s+/g, '')}, {selectedDiplome.year}
-              </p>
-              
-              <div className="space-y-3 text-white/90" style={{ fontSize: "12px"}}>
-                <p className="tracking-[0.12em] text-white/90 ">STATUS: {selectedDiplome.status}</p>
-                <p className="tracking-[0.12em] text-white/90 mt-6">TECHNOLOGIES:</p>
+              <span className="mb-10 tracking-[0.15em] text-white/90" style={{ fontSize: "14px",fontWeight:"600" }}>
+                <p className="tracking-[0.12em] text-white/90 mt-6">INSTITUTION:</p>
                 {selectedDiplome.institution.map((tech, i) => (
                   <p key={i} className="tracking-[0.12em] pl-4">• {tech}</p>
                 ))}
-              </div>
-
-              <div className="mt-10 pt-6 border-t text-white/90 border-white/20">
-                <p className="tracking-[0.12em] opacity-70 text-white/90 " style={{ fontSize: "11px" }}>
-                  {selectedDiplome.detail}
-                </p>
+              </span>
+              <br></br>
+              <div className="space-y-3 text-white/90" style={{ fontSize: "12px"}}>
+                <p className="tracking-[0.12em] text-white/90 ">STATUS: {selectedDiplome.status}, {selectedDiplome.year}</p>
+                <p className="tracking-[0.12em] text-white/90 mt-6">TECHNOLOGIES:</p>
+                {selectedDiplome.detail.map((tech, i) => (
+                  <p key={i} className="tracking-[0.12em] pl-4">• {tech}</p>
+                ))}
               </div>
             </div>
-
           </motion.div>
+
           {/* Onglets verticaux */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-row absolute top-24 -left-140 items-stretch gap-30 z-40 rounded-r-xl"
-            style={{
-              backgroundImage: `url(${textureBeige})`,
-                backgroundSize: 'cover',
-                //backgroundPosition: 'center',
-                //mixBlendMode: 'multiply',
-                opacity: 0.8,
-                flexDirection: "column",
-                gap: "30px",
-              backgroundColor: "#c9b596",
-                padding: "8px",
+            initial={{ opacity: 0, y: 50, rotateZ: 1 }}
+            animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
 
-              right: "21%",
-              top: "140px",
+            className="flex flex-row absolute top-14 -left-140 items-stretch gap-30 rounded-r-xl"
+            style={{
+                opacity: 0.7,
+                flexDirection: "column",
+                gap: "20px",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "0px 20px 20px 0px",
+                backgroundColor: "transparent",
+                padding: "8px",
+                right: "20%",
+              top: "50px",
+              zIndex: 0,
             }}
           >
             {diplomesList.map((dip) => (
@@ -187,7 +184,7 @@ export default function Diplomes() {
                 onClick={() => setSelectedDiplome(dip)}
                 className={`w-14 h-40 flex items-center justify-center
                   text-[11px] tracking-[0.2em]
-                  rounded-r-xl shadow-xl
+                  rounded-r-xl shadow-x2 hover:shadow-2xl 
                   ${
                     selectedDiplome.id === dip.id
                       ? "bg-[#5d4a3a] text-white"
@@ -195,11 +192,24 @@ export default function Diplomes() {
                   }
                 `}
                 style={{
+                  backgroundSize: 'cover',
+                  backgroundImage: `url(${textureBeige})`,
+                  backgroundColor: "#c9b596",
+                  backgroundPosition: 'center',
+                  //mixBlendMode: 'multiply',
                   writingMode: "vertical-rl",
                   textOrientation: "mixed",
+                  borderRadius: "0px 20px 20px 0px",
+                  padding: "12px",
+                  marginLeft: "10px",
+                  marginRight: "0px",
+                  boxShadow: ' 0 0 20px rgba(0,0,0,0.1)',
+                  zIndex: 10,
+                  cursor: "pointer",
+
                 }}
               >
-                {dip.title}
+                {dip.subtitle}
               </button>
             ))}
           </motion.div>
@@ -259,12 +269,9 @@ export default function Diplomes() {
             <div className="absolute inset-0 flex padding-20 justify-center z-10">
               <div className="text-center text-white/80 px-16">
                 <p className="mb-6 tracking-[0.15em] text-white/60" style={{ fontSize: "13px", paddingTop: "20px", paddingLeft: "20px" }}>
-                  DISCOVER WHERE SUCCESS RESIDES.
+                  Decouvrez à quoi cela ressemble.
                 </p>
-                <h2 className="tracking-[0.15em] leading-tight" style={{ color: "white", fontSize: "26px", padding: "20px" }}>
-                  <img src={selectedDiplome.photo} alt="Photo Diplome" />
-                  
-                </h2>
+                <CarrouselPhoto photos={selectedDiplome.photo} rotation={0} delay={0.2} zIndex={230} />
               </div>
             </div>
           </motion.div>
@@ -277,7 +284,7 @@ export default function Diplomes() {
             className="absolute rounded-2xl shadow-2xl overflow-hidden"
             style={{
               right: "42.5%",
-              top: "360px",
+              top: "470px",
               width: "40%",
               height: "90%",
               backgroundColor: "#5d4a3a",
@@ -342,20 +349,18 @@ export default function Diplomes() {
 
             {/* Nom en haut */}
             <div className="absolute top-12 left-12 text-white/80 z-10">
-              <p className="tracking-[0.2em]" style={{ fontSize: "26px", paddingTop: "20px", paddingLeft: "80px", color:"white" }}>
-                {selectedDiplome.title}, {selectedDiplome.year}
+              <p className="tracking-[0.2em]" style={{ fontSize: "26px", paddingTop: "20px", paddingLeft: "80px", color:"white", marginBottom:"10px" }}>
+                @&nbsp;{selectedDiplome.title}, {selectedDiplome.year}
               </p>
             </div>
 
             {/* Description en bas */}
-            <div className="absolute bottom-16 left-12 right-12 z-10">
-              <p className="text-blue/30 tracking-[0.15em] mb-8" style={{ fontSize: "22px" , paddingTop: "60px", paddingLeft: "80px" }}>
-                {selectedDiplome.title.toLowerCase().replace(/\s+/g, '')}.com
+            <div className="absolute bottom-36 left-12 right-12 z-10">
+              <p className="text-blue/30 tracking-[0.15em] mb-8" style={{ fontSize: "18px" , paddingTop: "40%", paddingLeft: "80px" }}>
+                {selectedDiplome.options}
               </p>
               
-              <p className="text-white/90 tracking-wide leading-relaxed" style={{ fontSize: "15px", paddingTop: "5px", paddingLeft: "80px" }}>
-                {selectedDiplome.institution}
-              </p>
+             
             </div>
           </motion.div>
 
@@ -364,11 +369,11 @@ export default function Diplomes() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="absolute rounded-2xl shadow-xl overflow-hidden"
+            className="absolute rounded-2xl shadow-xl overflow-hidden z-20"
             style={{
-              right: "25.5%",
+              right: "24.5%",
               top: "20px",
-              width: "55%",
+              width: "51%",
               height: "98%",
               backgroundColor: "#d4c4a8",
               zIndex: 0,

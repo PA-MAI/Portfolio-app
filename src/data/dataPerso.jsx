@@ -1,14 +1,38 @@
-// Images pour les expériences et diplômes
-const img1 = "https://images.unsplash.com/photo-1638636241638-aef5120c5153?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBjZXJ0aWZpY2F0ZSUyMGRpcGxvbWF8ZW58MXx8fHwxNzY2MTY2MjIyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const img2 = "https://images.unsplash.com/photo-1762341114803-a797c44649f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjB3b3JrJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2NjE1MDI3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const img3 = "https://images.unsplash.com/photo-1653945475227-596b295cff01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjBncmFkdWF0aW9ufGVufDF8fHx8MTc2NjA3NzI0OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
-const img4 = "https://images.unsplash.com/photo-1758518731027-78a22c8852ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFjaGlldmVtZW50fGVufDF8fHx8MTc2NjE2NjIyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
+import img3 from "@/assets/img/licencedev.jpg";
+import assr from "@/assets/img/licenceassr.jpg";
+import itil from "@/assets/img/itilv3.jpg";
+import iso from "@/assets/img/iso.jpg";
+import sql from "@/assets/img/sql.jpg";
+import sio from "@/assets/img/btssio.jpg";
+import gefi from "@/assets/img/tech94.jpg";
+import alsymex from "@/assets/img/alsymex.jpg";
+import activons from "@/assets/img/activonsnous.png";
+
+
+//image poignée à ajouter dans le dossier src/assets/img
+const poignée = "./src/assets/img/poignée.png";
+const etiquette = "./src/assets/img/etiquette.png";
+// Images portrait pour le polaroid d'accueil
+const imgmoi1 = "./src/assets/img/moi1.jpg";
+const imgmoi2 = "./src/assets/img/moi2.jpg";
+const imgmoi3 = "./src/assets/img/moi2.jpg";
+const imgmoi4 = "./src/assets/img/moi4.jpg";
+
+// Images pour les expériences professionnelles
+
+const img1 = activons;
+const img2 = alsymex;
+
+// Image pour les diplômes
+const img4car = [assr, itil, iso, sql];
+const img5car = [sio];
+const img6car = [gefi];
 
 const DataPerso = {
 
     contactsCardsData: [
         { title: "NOM Prenom.", subtitle: "MAIROT Pascal" },
-        { title: "Tel EMAIL: ", subtitle: "0621183741 zicones@yahoo.fr" },
+        { title: "Tel EMAIL: ", subtitle: "06 21 18 37 41, zicones@yahoo.fr", link: "mailto:zicones@yahoo.fr" },
         { title: "GITHUB: ...", subtitle: "www.github.com/PA-MAI", link: "https://github.com/PA-MAI" },
         { title: "LINKEDIN: ...", subtitle: "linkedin.com/in/pascal-mairot", link: "https://www.linkedin.com/in/pascal-mairot-989922109/" },
     ],
@@ -24,20 +48,40 @@ const DataPerso = {
     ],
 
     softsCardsData: [
-        { title: "Git & GitHub" },
-        { title: "VS Code" },
-        { title: "Figma" },
-        { title: "Photoshop" },
-        { title: "Javascript React" },
-        { title: "Redux" },
-        { title: "TypeScript - Angular" },
+        { title: "Git & GitHub", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
+        { title: "HTML5 & CSS3 & Tailwind", images: ["https://cdn-icons-png.flaticon.com/512/732/732190.png","https://cdn-icons-png.flaticon.com/512/732/732190.png","https://cdn-icons-png.flaticon.com/512/732/732190.png"] },
+        { title: "VS Code & Figma", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
+        { title: "Javascript React & Redux", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
+        { title: "Node.js & Express & Mongodb", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2000000000000000.png"] },
+        { title: "TypeScript & Angular", images: ["https://cdn-icons-png.flaticon.com/576px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
+        { title: "Make & chatGPT", images: ["https://cdn-icons-png.flaticon.com/576px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
+        { title: "Photoshop & Illustrator", image: ["https://cdn-icons-png.flaticon.com/500px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
     ],
 
     ShootsData: [
-        { title: "", image: img1 },
-        { title: "", image: img2 },
-        { title: "", image: img3 },
-        { title: "", image: img4 },
+        { title: "", image: imgmoi1 },
+        { title: "", image: imgmoi2 },
+        { title: "", image: imgmoi3 },
+        { title: "", image: imgmoi4 },
+    ],
+
+    // img4cardata: [
+    //     { title: "", image: img4car[0] },
+    //     { title: "", image: img4car[1] },
+    //     { title: "", image: img4car[2] },
+    //     { title: "", image: img4car[3] },
+    // ],
+    // img5cardata:[
+    //     { title: "", image: img5car[0] },
+    //     { title: "", image: img5car[1] },
+
+    // ],
+
+    poigneeData: [
+        { title: "", image: poignée },
+    ],
+    etiquetteData: [
+        { title: "", image: etiquette },
     ],
 
     projectsData: [
@@ -99,43 +143,69 @@ const DataPerso = {
     experiencesData: [
          {
             id: 7,
-            title: "Développeur Frontend",
-             company: "Tech Solutions",
-             duration: "Jan 2022 - Présent",
-             detail: "Développement d'interfaces utilisateur réactives avec React et TypeScript.",
+            title: "Développeur Frontend React",
+             company: "Activons-nous association à but non lucratif",
+             duration: "octobre 2025 - Présent",
+             detail: "Développement d'une application web réactives avec React et TypeScript.",
              certificat: img1,
-             status: "Validé",
-             technologies: ["React", "TypeScript", "Tailwind CSS", "Redux"]
+             status: "volontariat en immersion ",
+             technologies: ["React", "TypeScript", "Tailwind CSS", "Redux","Node.js", "Express", "MongoDB", "REST API", "Wordpress"]
         },
          {
             id: 8,
-            title: "Développeur Backend",
-            company: "Web Services Inc.",
-            duration: "Fév 2021 - Déc 2021",
-             detail: "Création d'API RESTful avec Node.js et Express.",
+            title: "Administrateur Systèmes et Réseaux",
+            company: "Alsymex Paris, groupe ALCEN",
+            duration: "dec 2012 - oct 2023",
+             detail: "Administration des systèmes et réseaux et assistant responsable informatique.",
              certificat: img2,
-             status: "Validé",
-             technologies: ["Node.js", "Express", "MongoDB", "REST API"]
+             status: "CDI",
+             technologies: [ "Développement et retouches des vues et rapports ERP Topsolid en sql", "Virtualisation", "Sécurité des systèmes", "Gestion de parc informatique","Déploiement postes et infrastructures systèmes et réseaux informatique et industriels.","Gestion sur demande de la téléphonie IP.","Audits qualité interne EN9100 ISO19011","Gestion d'autres filiales du groupe ALCEN.","Pilotage de ma mise en place de l'infrastructure et gestion des accès ","Supervision des serveurs et services critiques.","Relation avec les fournisseurs et prestataires "]
         }
     ],
     diplomesData: [
-         {
+        {
             id: 9,
-            title: "Licence Informatique",
-              institution: ["Université de la Technologie", "Spécialisation Web & Mobile"],
-              year: "2020",
-              detail: "Spécialisation en développement web et mobile.",
-              photo: img3,
-              status: "Diplômé"
-          },
+            title: "Licence Developpeur Concepteur Logiciel",
+            subtitle: "Developpeur Frontend",
+            institution: ["OpenClassRooms", "e-learning"],
+            year: "2025",
+            detail: ["HTML5", "CSS3", "JavaScript", "React","Angular", "Redux", "Tailwind CSS", "Node.js."],
+            photo: [img3],
+            status: "Diplômé niv.6",
+            options: ["Spécialisation React Web & Mobile"]
+        },
             {
             id: 10,
-            title: "Master Informatique",
-            institution: ["Université de la Technologie", "Architecture Logicielle"],
-            year: "2022",
-                detail: "Approfondissement en architectures web et mobile.",
-                photo: img4,
-                status: "Diplômé"
+            title: "License Professionnelle Administrateur des systemes et sécurité des réseaux (ASSR)",
+            subtitle: "Administrateur Systèmes et Réseaux",
+            institution: ["Université Paris-Est Creteil", "IUT de Lieusaint"],
+            year: "2018",
+            detail: ["Assistant responsable informatique","Administration des systèmes et réseaux", "Maintenance et sécurité des systèmes","virtualisation des serveurs", "Gestion de bases de données et ERP.","Certification ITIL V3", "SQL"],
+            photo: img4car,
+            status: "Diplômé niv.6",
+            options: ["Parcours Réseaux d'Entreprises" ]
+        },
+            {
+            id: 11,
+            title: "BTS Technicien Supérieur en Services Informatiques aux Organisations (SIO)",
+            subtitle: "Technicien systèmes et réseaux",
+            institution: ["Académie de Créteil"],
+            year: "2016",
+            detail: [ "Virtualisation", "Sécurité des systèmes", "déploiement d'applications", "gestion de parc informatique"],
+            photo: img5car,
+            status: "Diplômé niv.5",
+            options: ["solutions d'infrastructure, systèmes et réseaux (SISR)"]
+        },
+         {
+            id: 12,
+            title: "Technicien de maintenance des matériels Informatiques",
+            subtitle: "Technicien de maintenance",
+            institution: ["Académie de Créteil"],
+            year: "1994",
+            detail: [ "Support utilisateur",  "déploiement d'applications", "gestion de parc informatique"],
+            photo: img6car,
+            status: "Diplômé niv.5",
+            options: ["Parcours bases electricité"]
         }
     ]
 }

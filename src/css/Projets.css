@@ -125,6 +125,41 @@
   transition: all 0.1s linear;
   z-index: 1;
 }
+
 .light-spot.hidden {
   display: none;
 }
+
+.tech-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+}
+
+.tech-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Couleurs officielles */
+.git { color: #F05032 ; }
+.github { color: #181717; }
+.html5 { color: #E34F26; }
+.css3 { color: #1572B6; }
+.tailwindcss { color: #06B6D4; }
+.javascript { color: #F7DF1E; }
+.react { color: #61DAFB; }
+.redux { color: #764ABC; }
+.nodedotjs { color: #339933; }
+.express { color: #000000; }
+.mongodb { color: #47A248; }
+.typescript { color: #3178C6; }
+.angular { color: #DD0031; }
+.figma { color: #F24E1E; }
+.visualstudiocode { color: #007ACC; }
+.openai { color: #412991; }
+.make { color: #6D00CC; }
+.adobephotoshop { color: #31A8FF; }
+.adobeillustrator { color: #FF9A00; }
+

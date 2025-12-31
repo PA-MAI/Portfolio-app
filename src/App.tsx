@@ -30,6 +30,7 @@ export default function App() {
         <div className="absolute" style={{ left: '130px', top: '240px' }}>
           <CardStack
             rotation={globalRotation}
+            //color="#ffffff"
             color="#5d4a3a"
             title="Contacts"
             link="#contact"

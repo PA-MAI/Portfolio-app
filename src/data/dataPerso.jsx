@@ -48,15 +48,124 @@ const DataPerso = {
     ],
 
     softsCardsData: [
-        { title: "Git & GitHub", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
-        { title: "HTML5 & CSS3 & Tailwind", images: ["https://cdn-icons-png.flaticon.com/512/732/732190.png","https://cdn-icons-png.flaticon.com/512/732/732190.png","https://cdn-icons-png.flaticon.com/512/732/732190.png"] },
-        { title: "VS Code & Figma", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
-        { title: "Javascript React & Redux", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png"] },
-        { title: "Node.js & Express & Mongodb", images: ["https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2111288.png","https://cdn-icons-png.flaticon.com/512/2111/2000000000000000.png"] },
-        { title: "TypeScript & Angular", images: ["https://cdn-icons-png.flaticon.com/576px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
-        { title: "Make & chatGPT", images: ["https://cdn-icons-png.flaticon.com/576px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
-        { title: "Photoshop & Illustrator", image: ["https://cdn-icons-png.flaticon.com/500px/flaticon.com/icons/png/filetype/png-7334947.png","https://cdn-icons-png.flaticon.com/icons/png/filetype/png-7334947.png"] },
-    ],
+    {
+        title: "Git & GitHub",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/git.svg",
+            className: "tech-icon git"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg",
+            className: "tech-icon github"
+        }
+        ]
+    },
+    {
+        title: "HTML5 & CSS3 & Tailwind",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/html5.svg",
+            className: "tech-icon html5"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/css3.svg",
+            className: "tech-icon css3"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tailwindcss.svg",
+            className: "tech-icon tailwindcss"
+        }
+        ]
+    },
+    {
+        title: "VS Code & Figma",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/visualstudiocode.svg",
+            className: "tech-icon visualstudiocode"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/figma.svg",
+            className: "tech-icon figma"
+        }
+        ]
+    },
+    {
+        title: "Javascript React & Redux",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/javascript.svg",
+            className: "tech-icon javascript"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/react.svg",
+            className: "tech-icon react"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/redux.svg",
+            className: "tech-icon redux"
+        }
+        ]
+    },
+    {
+        title: "Node.js & Express & MongoDB",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/nodedotjs.svg",
+            className: "tech-icon nodedotjs"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/express.svg",
+            className: "tech-icon express"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mongodb.svg",
+            className: "tech-icon mongodb"
+        }
+        ]
+    },
+    {
+        title: "TypeScript & Angular",
+        icons: [
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/typescript.svg",
+            className: "tech-icon typescript"
+        },
+        {
+            src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/angular.svg",
+            className: "tech-icon angular"
+        }
+        ]
+    },
+  {
+    title: "Make & ChatGPT",
+    icons: [
+      {
+        src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/make.svg",
+        className: "tech-icon make"
+      },
+      {
+        src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg",
+        className: "tech-icon openai"
+      }
+    ]
+  },
+  {
+    title: "Photoshop & Illustrator",
+    icons: [
+      {
+        src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobephotoshop.svg",
+        className: "tech-icon adobephotoshop"
+      },
+      {
+        src: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobeillustrator.svg",
+        className: "tech-icon adobeillustrator"
+      }
+    ]
+  }
+],
+
 
     ShootsData: [
         { title: "", image: imgmoi1 },

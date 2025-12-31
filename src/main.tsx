@@ -8,7 +8,7 @@ import ProjetDetail from "./pages/ProjetDetail";
 import Experiences from "./pages/Experiences";
 import Diplomes from "./pages/Diplomes";
 
-import './css/Projets.css'
+import './css/Projets.css';
 import './css/index.css';
 
 ReactDOM.createRoot(document.getElementById("root")).render(

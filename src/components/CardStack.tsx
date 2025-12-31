@@ -1,6 +1,14 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { BusinessCard } from "./BusinessCard";
+import { TechIcon } from "./TechIcon";
+import '../css/Projets.css'
+
+
+interface IconData {
+  src: string;
+  className: string;
+}
 
 interface CardData {
   title?: string;
@@ -8,6 +16,7 @@ interface CardData {
   image?: string;
   link?: string;
   images?: string[];
+  icons?: IconData[];
 }
 
 interface CardStackProps {
@@ -179,8 +188,26 @@ export function CardStack({
                 opacity: 0.7
               }}
             />
-            {/* Contenu de la carte */}
-              {card.images && (
+              {/* Contenu de la carte */}
+              {card.icons && (
+                <div
+                  className="flex mb-2 relative z-10"
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "12px",
+                  }}
+                >
+                  {card.icons.map((icon, idx) => (
+                    <TechIcon
+                      key={idx}
+                      src={icon.src}
+                      className={icon.className}
+                    />
+                  ))}
+                </div>
+              )}
+              {/* {card.images && (
                 <div className="flex  space-x-2 mb-2"
                   style={{
                     flexDirection: 'row',
@@ -194,11 +221,11 @@ export function CardStack({
                     <img src={card.images[0]} alt={card.title} className="w-16 h-16 object-contain relative z-10 w-40 h-40" />
                   ) : (
                     card.images.map((img, idx) => (
-                      <img key={idx} src={img} alt={card.title} className="w-16 h-16 object-contain relative z-10 w-40 h-40" />
+                      <img key={idx} src={img} alt={card.title} className={icon.className} />
                     ))
                   )}
                 </div>
-              )}
+              )} */}
               {card.image && (
                 <div className="mb-2">
                   <img src={card.image} alt={card.title} className="w-16 h-16 object-contain relative z-10" />

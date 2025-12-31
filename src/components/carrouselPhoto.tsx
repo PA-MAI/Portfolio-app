@@ -35,17 +35,18 @@ export function CarrouselPhoto({
         whileHover={{ scale: 1.05, y: -8 }}
         transition={{ duration: 0.4, delay }}
         className="cursor-pointer select-none"
-        style={{ zIndex }}
+        style={{ zIndex  }}
       >
         {/* PHOTOS */}
         <div
-          className="overflow-hidden shadow-2xl rounded-xl p-3"
+          className="overflow-hidden shadow-2xl rounded-x2 p-3"
           style={{
-            padding: "10px",
-            width: 280,
-            height: 320,
+            //padding: "10px",
+            width: "300px",
+            height: "240px",
             transform: `rotate(${rotation}deg)`,
-            borderRadius: '16px',
+            //borderRadius: '16px',
+            opacity: 0.95,
           }}
         >
           {/* Image */}
@@ -55,7 +56,9 @@ export function CarrouselPhoto({
               width: "100%",
               height: "240px",
               position: "relative",
-              borderRadius: '10px',
+              borderRadius: '5px',
+              padding: '10px',
+              
             }}
           >
             <AnimatePresence mode="wait">

@@ -7,7 +7,7 @@ import DataPerso from './data/dataPerso';
 
 export default function App() {
   const globalRotation = -15; // Inclinaison plus prononcée pour vue de bureau
-const texture1 = 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
+  const texture1 = 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
   return (
     <div className="w-screen h-screen bg-[#d4d2ca] flex items-center justify-center overflow-hidden"
       style={{ backgroundImage: `url(${texture1})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>

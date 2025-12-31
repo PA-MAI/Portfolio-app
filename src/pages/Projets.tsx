@@ -16,9 +16,7 @@ export default function Projets() {
       id: 1000 + i,
       title: "PROJET À VENIR",
       subtitle: "En développement",
-      
-      
-      color: "#a8a8a8",
+       color: "#a8a8a8",
       status: "À venir",
       technologies: [],
       description: "Ce projet sera bientôt disponible",
@@ -31,49 +29,83 @@ export default function Projets() {
     <div className="w-screen h-screen"
       style={{
         backgroundColor: '#e8dcc8',
-       // backgroundImage: `url(${texture2})`,
-          backgroundRepeat: "repeat",
-         // backgroundSize: "cover",
+            margin: "0px",
+          
+         
        }}>
-      {/* Bandeau de navigation en haut - FULL WIDTH */}
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full shadow-2xl flex-shrink-0"
-        style={{ 
-          
-          height: "80px",
-          backgroundColor: '#5d4a3a',
-          alignContent: "center",
-          
-        }}
-      >
-        <div className="h-full flex items-center px-12" style={{justifyContent: "space-around", width: "100%", marginRight: "10px", marginLeft: "10px", alignItems:"center" }}>
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
-          >
-            <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px",cursor: "pointer" }}>
-              RETOUR À L'ACCUEIL
-            </span>
-          </button>
-
-          <div className="ml-auto">
-            <h1 className="text-white/90 tracking-[0.2em]" style={{ fontSize: "22px", marginRight: "20px" }}>
-              MES PROJETS
-            </h1>
-          </div>
-        </div>
-      </motion.div>
+       {/* Bandeau de navigation */}
+                <motion.div
+                  initial={{ y: -100 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="relative flex w-full shadow-2xl overflow-hidden"
+                  style={{ 
+                    height: "80px",
+                  backgroundColor: "#5d4a3a",
+                }}
+            >
+              {/* Texture multiply */}
+              <div
+                className="absolute inset-0 pointer-events-none z-[1]"
+                style={{
+                  backgroundImage: `url(${texture2})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  mixBlendMode: "multiply",
+                  opacity: 0.6,
+                }}
+              />
+      
+              {/* Texture overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none z-[2]"
+                style={{
+                  backgroundImage: `url(${texture2})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  mixBlendMode: "overlay",
+                  opacity: 0.3,
+                }}
+              />
+      
+              {/* Contenu – mêmes règles flex qu’avant */}
+              <div
+                className="relative z-[10] flex h-full w-full px-12"
+                      style={{
+                  width: "100%",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
+                >
+                  <ArrowLeft size={28} />
+                  <span
+                    className="tracking-[0.15em]"
+                    style={{ fontSize: "16px", cursor: "pointer" }}
+                  >
+                    RETOUR ACCUEIL
+                  </span>
+                </button>
+      
+                <h1
+                  className="text-white/90 tracking-[0.2em]"
+                  style={{ fontSize: "20px" }}
+                >
+                  PAGE PROJETS
+                </h1>
+              </div>
+        </motion.div>
 
       {/* Grille de projets - 5 colonnes */}
       <div className="flex-1 flex-row overflow-y-auto py-16 px-12 to-transparent"
         style={{
           backgroundImage: `url(${texture1})`,
           backgroundRepeat: "repeat",
-          backgroundSize: "cover"
+          backgroundSize: "cover",
+       //height: "calc(500vh - 20px)",
         }}>
         <div
           className=" flex gap-x-4 gap-y-1 mx-auto shadow-xl/20"

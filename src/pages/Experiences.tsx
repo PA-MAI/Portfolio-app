@@ -18,39 +18,80 @@ export default function Experiences() {
 
   return (
     <div className="w-screen h-screen overflow-hidden " style={{ backgroundColor: '#e8dcc8' }}>
-      {/* Bandeau de navigation */}
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex w-full shadow-2xl"
-        style={{ 
-          height: "80px",
-          backgroundColor: '#5d4a3a'
-        }}
+        {/* Bandeau de navigation */}
+          <motion.div
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative flex w-full shadow-2xl overflow-hidden"
+            style={{ 
+              height: "80px",
+            backgroundColor: "#5d4a3a",
+          }}
       >
-        <div className="h-full flex items-center px-12" style={{justifyContent: "space-around", width: "100%", marginLeft: "10px", marginRight: "10px", alignItems:"center" }}>
+        {/* Texture multiply */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            backgroundImage: `url(${textureBeige})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            mixBlendMode: "multiply",
+            opacity: 0.6,
+          }}
+        />
+
+        {/* Texture overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[2]"
+          style={{
+            backgroundImage: `url(${textureBeige})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            mixBlendMode: "overlay",
+            opacity: 0.3,
+          }}
+        />
+
+        {/* Contenu – mêmes règles flex qu’avant */}
+        <div
+          className="relative z-[10] flex h-full w-full px-12"
+                style={{
+            width: "100%",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px", cursor: "pointer" }}>
+            <span
+              className="tracking-[0.15em]"
+              style={{ fontSize: "16px", cursor: "pointer" }}
+            >
               RETOUR ACCUEIL
             </span>
           </button>
 
-          <div className="ml-auto">
-            <h1 className="text-white/90 tracking-[0.2em]" style={{ fontSize: "20px" }}>
-              PAGE EXPERIENCE
-            </h1>
-          </div>
+          <h1
+            className="text-white/90 tracking-[0.2em]"
+            style={{ fontSize: "20px" }}
+          >
+            PAGE EXPERIENCE
+          </h1>
         </div>
-      </motion.div>
+  </motion.div>
 
       {/* Contenu - Dossiers empilés */}
 
-      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden " style={{ backgroundImage: `url(${textureGray})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>
+      <div className="flex-1 flex items-center justify-center p-12 overflow-hidden "
+        style={{
+          backgroundImage: `url(${textureGray})`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "cover"
+        }}>
         <div className="relative" style={{ width: "1200px", height: "850px" }}>
           
           {/* DOSSIER 1 - Beige à droite (au-dessus) */}
@@ -264,8 +305,8 @@ export default function Experiences() {
             />
 
             <div className="absolute inset-0 flex padding-20 justify-center z-10">
-              <div className="text-center text-white/80 px-16">
-                <p className="mb-6 tracking-[0.15em] text-white/60" style={{ fontSize: "13px", paddingTop: "20px", paddingLeft: "20px" }}>
+              <div className="text-center text-white/80 px-16 gap-4 flex justify-center items-center" style={{justifyContent: "start", flexDirection: "column",gap: "10px"}}>
+                <p className="mb-6 tracking-[0.15em] text-white/60" style={{ fontSize: "13px", paddingTop: "20px", }}>
                   ENTREPRISE
                 </p>
                 <h2 className="tracking-[0.15em] leading-tight" style={{ color: "white", fontSize: "26px", padding: "0px" }}>

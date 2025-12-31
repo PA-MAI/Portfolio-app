@@ -124,6 +124,7 @@ export function CardStack({
             style={{
               width,
               height,
+              flexDirection: 'column',
               backgroundColor: color,
               borderRadius: 16,
               boxShadow: "0 6px 18px rgba(0,0,0,0.2)",
@@ -171,15 +172,24 @@ export function CardStack({
             
             {/* Effet brillant photo subtil */}
             <div 
-              className="absolute inset-0 pointer-events-none z-[4]"
-              style={{
+              className="absolute flex inset-0 pointer-events-none z-[4]"
+                style={{
+                flexDirection: 'column',
                 background: 'linear-gradient(125deg, rgba(255,255,255,0.09) 0%, transparent 35%, transparent 65%, rgba(255,255,255,0.06) 100%)',
                 opacity: 0.7
               }}
             />
             {/* Contenu de la carte */}
               {card.images && (
-                <div className="flex flex-col space-x-2 mb-2" style={{ flexDirection: 'column', width: '40px', height: '80px' }}>
+                <div className="flex  space-x-2 mb-2"
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '10px',
+                    width: '40px',
+                    height: '40px'
+                  }}>
                   {card.images.length === 1 ? (
                     <img src={card.images[0]} alt={card.title} className="w-16 h-16 object-contain relative z-10 w-40 h-40" />
                   ) : (

@@ -55,25 +55,29 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
         margin: "10px",
         transformStyle: "preserve-3d",
         opacity: isComingSoon ? 0.6 : 1,
+        borderRadius: "6px",
       }}
     >
       {/* Boîte en carton - Face avant */}
       <div
         className="relative rounded-lg shadow-2xl overflow-hidden"
         style={{
-          width: "340px",
-          height: "380px",
+          width: "320px",
+          height: "360px",
           backgroundColor: project.color,
           transformStyle: "preserve-3d",
           boxShadow: isComingSoon
             ? '0 8px 24px rgba(0,0,0,0.2)'
             : '10px 20px 40px rgba(0,0,0,0.8)',
+          borderRadius: "6px",
         }}
       >
         <div className="absolute inset-0 pointer-events-none z-[1]"
           style={{
             backgroundImage: `url(${textureUrl})`,
-            
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            //mixBlendMode: 'multiply',
             padding: "40px",
             margin: "0px",
             boxShadow: `
@@ -81,6 +85,8 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
               inset 0 0 20px rgba(0,0,0,0.1),
               inset 8px 8px 20px rgba(0,0,0,0.1)
             `,
+            borderRadius: "6px",
+
         }}>
         {/* Texture réaliste overlay - Première couche */}
         <div 
@@ -90,7 +96,8 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             mixBlendMode: 'multiply',
-            opacity: 0.5
+            opacity: 0.5,
+            borderRadius: "6px"
           }}
         />
         
@@ -102,7 +109,8 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             mixBlendMode: 'overlay',
-            opacity: 0.3
+            opacity: 0.3,
+            borderRadius: "6px"
           }}
         />
         
@@ -134,6 +142,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
           className="absolute top-0 left-0 right-0 h-16 pointer-events-none z-[5]"
           style={{
             background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 100%)',
+            borderRadius: "6px",
           }}
         />
         
@@ -149,7 +158,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
         <div 
           className="absolute top-0 bottom-0 right-0 w-8 pointer-events-none z-[5]"
           style={{
-            background: 'linear-gradient(to left, rgba(0,0,0,0.12) 0%, transparent 100%)',
+            background: 'linear-gradient(to left, rgba(0,0,0,0.12) 0%, transparent 50%)',
           }}
         />
 
@@ -162,8 +171,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
               height: "160px",
               borderRadius: "50%",
               gap: "12px",
-              
-              backgroundColor: 'rgba(255,255,255,0.1)',
+              //backgroundColor: 'rgba(255,255,255,0.1)',
               boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.3)',
               //backdropFilter: 'blur(6px)',
             }}
@@ -214,7 +222,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              top: "165px",
+              top: "145px",
         }}>
           <p 
             className="text-white/60 tracking-[0.15em] mb-2" 

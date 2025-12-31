@@ -23,36 +23,68 @@ export default function ProjetDetail() {
 
   return (
     <div className="w-screen h-screen overflow-hidden " style={{ backgroundColor: '#e8dcc8' }}>
-      {/* Bandeau de navigation */}
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex w-full shadow-2xl"
-        style={{ 
-          height: "80px",
-          backgroundColor: '#5d4a3a'
+       {/* Bandeau de navigation */}
+        <motion.div
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative flex w-full shadow-2xl overflow-hidden"
+          style={{ 
+            height: "80px",
+          backgroundColor: "#5d4a3a",
+        }}
+    >
+      {/* Texture multiply */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          backgroundImage: `url(${textureBeige})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          mixBlendMode: "multiply",
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[2]"
+        style={{
+          backgroundImage: `url(${textureBeige})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          mixBlendMode: "overlay",
+          opacity: 0.3,
+        }}
+      />
+
+      {/* Contenu – mêmes règles flex qu’avant */}
+      <div
+        className="relative z-[10] flex h-full w-full px-12"
+              style={{
+          width: "100%",
+          justifyContent: "space-around",
+          alignItems: "center",
         }}
       >
-        <div className="h-full flex items-center px-12" style={{ justifyContent: "space-between", width: "100%", marginRight: "10px" }}>
-          <button
-            onClick={() => navigate("/projets")}
-            className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
-          >
-            <ArrowLeft size={28} />
-            <span className="tracking-[0.15em]" style={{ fontSize: "16px" }}>
-              RETOUR AUX PROJETS
-            </span>
-          </button>
+        <button
+        onClick={() => navigate("/projets")}
+        className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
+      >
+        <ArrowLeft size={28} />
+        <span className="tracking-[0.15em] z-11" style={{ fontSize: "16px" }}>
+          RETOUR AUX PROJETS
+        </span>
+      </button>
 
-          <div className="ml-auto">
-            <h1 className="text-white/90 tracking-[0.2em]" style={{ fontSize: "20px" }}>
-              {project.title}
-            </h1>
-          </div>
-        </div>
-      </motion.div>
-
+        <div className="ml-auto">
+        <h1 className="text-white/90 tracking-[0.2em]" style={{ fontSize: "20px" }}>
+          {project.title}
+        </h1>
+      </div>
+      </div>
+    </motion.div>
+ 
       {/* Contenu - Dossiers empilés */}
       <div className="flex-1 flex items-center justify-center p-12 overflow-hidden" style={{ backgroundImage: `url(${textureGray})`, backgroundRepeat: "repeat", backgroundSize: "cover" }}>
         <div className="relative" style={{ width: "1200px", height: "850px" }}>

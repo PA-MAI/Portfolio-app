@@ -79,7 +79,7 @@ export default function Projets() {
               >
                 <button
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
+                  className="flex items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
                 >
                   <ArrowLeft size={28} />
                   <span

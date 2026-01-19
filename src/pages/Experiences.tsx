@@ -18,7 +18,7 @@ export default function Experiences() {
 
   return (
     <div className="w-screen h-screen overflow-hidden " style={{ backgroundColor: '#e8dcc8' }}>
-        {/* Bandeau de navigation */}
+        {/* Bandeau de navigation voir si header a creer*/}
           <motion.div
             initial={{ y: -100 }}
             animate={{ y: 0 }}
@@ -64,7 +64,7 @@ export default function Experiences() {
         >
           <button
             onClick={() => navigate("/")}
-            className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
+            className="flex items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft size={28} />
             <span

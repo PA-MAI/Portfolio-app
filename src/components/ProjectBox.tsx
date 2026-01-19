@@ -161,35 +161,68 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
             background: 'linear-gradient(to left, rgba(0,0,0,0.12) 0%, transparent 50%)',
           }}
         />
-
+        <img src={etiquette} alt="Étiquette" className="mx-auto relative " width="80px"
+                style={{ top: "-20px", left: "-30px", padding: "0px", marginBottom: "20px" }} />
         {/* Logo circulaire  au centre */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10" style={{ justifyContent: "end", flexDirection: "column", gap: "40px" }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10" style={{ justifyContent: "end", flexDirection: "column", gap: "10px" }}>
           <div 
             className="flex items-center justify-center border-4 border-white/70 shadow-lg"
               style={{
+                
               width: "160px",
               height: "160px",
               borderRadius: "50%",
-              gap: "12px",
+              gap: "2px",
               //backgroundColor: 'rgba(255,255,255,0.1)',
               boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.3)',
               //backdropFilter: 'blur(6px)',
             }}
             >
-              {/* Logo et texte */}
-              <span >
-              <img src={etiquette} alt="Étiquette" className="mx-auto relative " width="150"
-                style={{ top: "45px", padding: "0px", marginBottom: "20px" }} />
+              
+          <div className="relative flex  z-10"
+                style={{
+                 flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  top: "-10px",
+                  textAlign: "center",
+                }}>
+                {/* Logo et texte */}
+
               <span className="tracking-[0.2em] relative" 
                 style={{ 
+                  width: "120px",
+                  height: "50px",
                   color: isText ? '#c9b596' : '#d2c2a6',
-                  top: "-50px",
-                  left: "27px",
+                  top: "5px",
+                  left: "0px",
                   fontSize: "28px",
                   fontFamily: 'serif',
                   textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}>@Projet</span>
-            </span>
+                {/* Titres au centre */}
+                <h3 
+                  className="text-white/90 tracking-[0.12em] leading-tight" 
+                  style={{ 
+                    width: "140px",
+                    fontSize: "13px",
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+                  }}
+                >
+                {project.title}
+              </h3>
+                <p 
+                  className="text-white/60 tracking-[0.15em] mb-2" 
+                  style={{
+                    fontSize: "10px",
+                    width: "140px"
+                    
+                   }}
+                >
+                  {project.subtitle.toUpperCase()}
+                </p>
+                
+            </div>
           </div>
           {/* Poignée de la boîte */}
             <div className="mt-4 text-center relative"
@@ -216,30 +249,7 @@ export function ProjectBox({ project, delay = 0 }: ProjectBoxProps) {
           </div>
         </div>
 
-        {/* Texte en haut */}
-          <div className="relative flex  top-8   z-10"
-            style={{
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              top: "145px",
-        }}>
-          <p 
-            className="text-white/60 tracking-[0.15em] mb-2" 
-            style={{ fontSize: "10px" }}
-          >
-            {project.subtitle.toUpperCase()}
-          </p>
-          <h3 
-            className="text-white/90 tracking-[0.12em] leading-tight" 
-            style={{ 
-              fontSize: "13px",
-              textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
-            }}
-          >
-            {project.title}
-          </h3>
-        </div>
+        
       </div>
         {/* Texte en bas */}
         <div className="absolute bottom-8 left-8 right-8 z-10">

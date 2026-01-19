@@ -63,7 +63,7 @@ export default function Diplomes() {
               >
                 <button
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors duration-300"
+                  className="flex items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
                 >
                   <ArrowLeft size={28} />
                   <span
@@ -192,7 +192,7 @@ export default function Diplomes() {
             </div>
           </motion.div>
 
-          {/* Onglets verticaux */}
+          {/* Onglets horizontaux */}
           <motion.div
             initial={{ opacity: 0, y: 50, rotateZ: 1 }}
             animate={{ opacity: 1, y: 0, rotateZ: 0 }}
@@ -203,12 +203,12 @@ export default function Diplomes() {
                 opacity: 0.7,
                 flexDirection: "column",
                 gap: "20px",
-                alignItems: "center",
-                justifyContent: "center",
+                alignItems: "enterc",
+                justifyContent: "start",
                 borderRadius: "0px 20px 20px 0px",
                 backgroundColor: "transparent",
                 padding: "8px",
-                right: "20%",
+                right: "1%",
               top: "50px",
               zIndex: 0,
             }}
@@ -232,7 +232,7 @@ export default function Diplomes() {
                   backgroundColor: "#c9b596",
                   backgroundPosition: 'center',
                   //mixBlendMode: 'multiply',
-                  writingMode: "vertical-rl",
+                  //writingMode: "vertical-rl",
                   textOrientation: "mixed",
                   borderRadius: "0px 20px 20px 0px",
                   padding: "12px",

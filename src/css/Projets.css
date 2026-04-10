@@ -121,7 +121,9 @@
     transparent 80%
   );
   filter: blur(60px);
-  mix-blend-mode: soft-light;
+   mix-blend-mode: multiply;
+   opacity: 0.8;
+  /*mix-blend-mode: soft-light;*/
   transition: all 0.1s linear;
   z-index: 1;
 }

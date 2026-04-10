@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Eye } from 'lucide-react';
 import React from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 interface BrandingFolderProps {
   rotation: number;
@@ -9,7 +9,8 @@ interface BrandingFolderProps {
   subtitle?: string;
   color: string;
   logo: string;
-  link: string;
+  link: React.ReactNode;
+  //link: string;
   delay: number;
   zIndex: number;
   large?: boolean;
@@ -26,8 +27,14 @@ export function BrandingFolder({ rotation, title, subtitle, color, logo, link, d
     ? 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
     : 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
   
+  const navigate = useNavigate();
   const handleClick = () => {
-    window.location.href = link;
+    navigate(link as string);
+    //  if (link.startsWith("/")) {
+    //     navigate(link.replace(/^\//, "")); // HashRouter interprète le path correctement
+    //  } else {
+    //     navigate(link as string);
+    //  }
   };
   
   return (

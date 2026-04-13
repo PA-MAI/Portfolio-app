@@ -284,8 +284,8 @@ export default function Diplomes() {
                         : "bg-[#e6d8bf] text-[#5d4a3a]"
                   }
                 `}
-                     style={{
-                         justifyContent: "end",
+                       style={{
+                          justifyContent: "end",
                           backgroundSize: "cover",
                           backgroundImage: `url(${textureBeige})`,
                           backgroundColor: "#c9b596",
@@ -321,7 +321,7 @@ export default function Diplomes() {
                     backgroundColor: "#a8a8a8",
                     zIndex: 3,
                     transform: "rotate(1deg)",
-                    boxShadow: "20px rgba(0,0,0,0.5)",
+                    boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
                  }}
               >
                  {/* Texture grise */}

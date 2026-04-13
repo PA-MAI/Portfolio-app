@@ -1,13 +1,15 @@
 import { motion } from "motion/react";
 import { useNavigate, useParams } from "react-router-dom";
-import { SquareChevronLeft, Github, FileText } from "lucide-react";
+import { SquareChevronLeft } from "lucide-react";
+import { useState } from "react";
 
 import DataPerso from "../data/dataPerso";
 
 export default function ProjetDetail() {
   const navigate = useNavigate();
-  const { id } = useParams();
-  
+   const { id } = useParams();
+   const [isModalOpen, setIsModalOpen] = useState(false);
+  //const [showPDF, setShowPDF] = useState(false);
   const project = DataPerso.projectsData.find(p => p.id === parseInt(id || "0"));
 
   if (!project) {
@@ -214,14 +216,8 @@ export default function ProjetDetail() {
                     }}
                  >
                     <p
-                       className="mb-4 tracking-[0.15em] text-white/90"
-                       style={{ fontSize: "18px" }}
-                    >
-                       HELLO
-                    </p>
-                    <p
                        className="mb-10 tracking-[0.15em] text-white/90"
-                       style={{ fontSize: "13px" }}
+                       style={{ fontSize: "18px" }}
                     >
                        @{project.title.toLowerCase().replace(/\s+/g, "")}
                     </p>
@@ -241,15 +237,6 @@ export default function ProjetDetail() {
                              • {tech}
                           </p>
                        ))}
-                    </div>
-
-                    <div className="mt-10 pt-6 border-t text-white/90 border-white/20">
-                       <p
-                          className="tracking-[0.12em] opacity-70 text-white/90 "
-                          style={{ fontSize: "11px" }}
-                       >
-                          {project.subtitle}
-                       </p>
                     </div>
                  </div>
               </motion.div>
@@ -321,7 +308,7 @@ export default function ProjetDetail() {
                           className="tracking-[0.15em] leading-tight"
                           style={{
                              color: "white",
-                             fontSize: "26px",
+                             fontSize: "22px",
                              padding: "20px",
                           }}
                        >
@@ -392,6 +379,7 @@ export default function ProjetDetail() {
                        height: "90px",
                        backgroundColor: "#b8a882",
                        zIndex: 10,
+                       boxShadow: "4px 0px 4px rgba(0,0,0,0.3)",
                     }}
                  >
                     <div
@@ -441,11 +429,49 @@ export default function ProjetDetail() {
                     >
                        {project.description}
                     </p>
-                    {(project.githubpage || project.soutenance) && (
+                    {Boolean(project.trellopage ||
+                       project.githubcode ||
+                       project.githubpage ||
+                       project.soutenance) && (
                        <div
-                          className="flex gap-6 mt-10"
-                          style={{ paddingLeft: "80px", paddingTop: "20px" }}
+                          className="flex gap-4 mt-10"
+                          style={{
+                             paddingLeft: "0px",
+                             paddingTop: "16px",
+                             flexDirection: "column",
+                             alignItems: "center",
+                             alignContent: "center",
+                             width: "100%",
+                             justifyContent: "center",
+                             gap: "12px",
+                          }}
                        >
+                          {project.githubcode && (
+                             <a
+                                href={project.githubcode}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 px-4 py-2 shadow-lg"
+                                style={{
+                                   backgroundColor: "#e8dcc8",
+                                   color: "#5d4a3a",
+                                   transform: "rotate(-4deg)",
+                                   borderRadius: "4px",
+                                   fontSize: "10px",
+                                   letterSpacing: "0.08em",
+                                   marginRight: "20px",
+                                   padding: "6px",
+                                   height: "22px",
+                                }}
+                             >
+                                <img
+                                   src={project.githubIcon}
+                                   alt="github"
+                                   style={{ width: "18px", height: "18px" }}
+                                />
+                                GitHub Code
+                             </a>
+                          )}
                           {project.githubpage && (
                              <a
                                 href={project.githubpage}
@@ -457,9 +483,11 @@ export default function ProjetDetail() {
                                    color: "#5d4a3a",
                                    transform: "rotate(-4deg)",
                                    borderRadius: "4px",
-                                   fontSize: "16px",
+                                   fontSize: "10px",
                                    letterSpacing: "0.08em",
-                                   marginRight: "20px",
+                                   marginRight: "25px",
+                                   padding: "6px",
+                                   height: "22px",
                                 }}
                              >
                                 <img
@@ -470,20 +498,47 @@ export default function ProjetDetail() {
                                 GitHub Page
                              </a>
                           )}
-
-                          {project.soutenance && (
+                          {project.trellopage && (
                              <a
-                                href={project.soutenance}
+                                href={project.trellopage}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 px-4 py-2 shadow-lg"
                                 style={{
-                                   backgroundColor: "#d4c4a8",
+                                   backgroundColor: "#e8dcc8",
                                    color: "#5d4a3a",
                                    transform: "rotate(-4deg)",
                                    borderRadius: "4px",
-                                   fontSize: "16px",
+                                   fontSize: "10px",
                                    letterSpacing: "0.08em",
+                                   marginRight: "25px",
+                                   padding: "6px",
+                                   height: "22px",
+                                }}
+                             >
+                                <img
+                                   src={project.githubIcon}
+                                   alt="github"
+                                   style={{ width: "18px", height: "18px" }}
+                                />
+                                Trello Page
+                             </a>
+                          )}
+                          {project.soutenance && (
+                             <a
+                                onClick={() => setIsModalOpen(true)}
+                                className="flex items-center gap-5 px-4 py-2 shadow-lg"
+                                style={{
+                                   backgroundColor: "#d4c4a8",
+                                   transform: "rotate(-4deg)",
+                                   color: "#5d4a3a",
+                                   borderRadius: "4px",
+                                   fontSize: "10px",
+                                   letterSpacing: "0.08em",
+                                   padding: "6px",
+                                   height: "22px",
+                                   cursor: "pointer",
+                                   marginRight: "25px",
                                 }}
                              >
                                 <img
@@ -493,6 +548,57 @@ export default function ProjetDetail() {
                                 />
                                 Soutenance PDF
                              </a>
+                          )}
+                          {isModalOpen && (
+                             <div
+                                onClick={() => setIsModalOpen(false)}
+                                style={{
+                                   position: "fixed",
+                                   top: 0,
+                                   left: 0,
+                                   width: "100vw",
+                                   height: "100vh",
+                                   backgroundColor: "rgba(0,0,0,0.6)",
+                                   display: "flex",
+                                   justifyContent: "center",
+                                   alignItems: "center",
+                                   zIndex: 1000,
+                                }}
+                             >
+                                <div
+                                   onClick={(e) => e.stopPropagation()}
+                                   style={{
+                                      width: "80%",
+                                      height: "80%",
+                                      background: "white",
+                                      borderRadius: "8px",
+                                      position: "relative",
+                                   }}
+                                >
+                                   <button
+                                      onClick={() => setIsModalOpen(false)}
+                                      style={{
+                                         position: "absolute",
+                                         top: "10px",
+                                         right: "10px",
+                                         fontSize: "18px",
+                                         cursor: "pointer",
+                                      }}
+                                   >
+                                      ✕
+                                   </button>
+
+                                   <iframe
+                                      src={project.soutenance}
+                                      title="Soutenance PDF"
+                                      style={{
+                                         width: "100%",
+                                         height: "100%",
+                                         border: "none",
+                                      }}
+                                   />
+                                </div>
+                             </div>
                           )}
                        </div>
                     )}

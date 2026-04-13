@@ -19,6 +19,14 @@ import moi3 from "@/assets/img/moi3.jpg";
 import moi4 from "@/assets/img/moi4.jpg";
 import poignée from "@/assets/img/poignée.png";
 import etiquette from "@/assets/img/etiquette.png";
+import githubIcon from "@/assets/img/github.png";
+import pdfIcon from "@/assets/img/pdf.png";
+import trelloIcon from "@/assets/img/trello.png";
+import soutenanceFisheyes from "@/assets/pdf/soutenanceFisheyes.pdf";
+import soutenancePetitsPlats from "@/assets/pdf/soutenancePetitsPlats.pdf";
+import soutenanceBilled from "@/assets/pdf/soutenanceBilled.pdf";
+import soutenanceLearnAtHome from "@/assets/pdf/soutenanceLearnAtHome.pdf";
+import soutenanceKasa from "@/assets/pdf/soutenanceKasa.pdf";
 //import { link } from "node:fs";
 
 //image poignée à ajouter dans le dossier src/assets/img
@@ -71,7 +79,6 @@ const DataPerso = {
          link: "https://www.linkedin.com/in/pascal-mairot-989922109/",
       },
    ],
-   projectLinks: {},
 
    softSkillsCardsData: [
       {
@@ -244,11 +251,10 @@ const DataPerso = {
          title: "PROJET PORTFOLIO",
          subtitle: "Site web personnel",
          description:
-            "Création d'un portfolio interactif avec React et TypeScript",
+            "Création de ce portfolio interactif avec React et TypeScript",
          color: "#c9b596",
          technologies: ["React", "TypeScript", "Tailwind CSS"],
          status: "En cours",
-        
       },
       {
          id: 2,
@@ -274,41 +280,99 @@ const DataPerso = {
          title: "API REST",
          subtitle: "Backend Node.js",
          description: "API RESTful pour applications mobiles et web",
-         color: "#c9b596",
+         color: "#9a9a9a",
          technologies: ["Node.js", "Express", "MongoDB"],
          status: "Terminé",
       },
       {
          id: 5,
-         title: "APPLICATION MOBILE",
-         subtitle: "React Native",
-         description:
-            "Application mobile cross-platform pour la gestion de tâches",
-         color: "#9a9a9a",
-         technologies: ["React Native", "Redux", "Firebase"],
+         title: "Kasa App",
+         subtitle: "Application pour la location de logements ",
+         description: "Creer une Application mobile React complète, projet p11 de formation ",
+         color: "#5d4a3a",
+         technologies: ["composants Create React App",  "Props", "State", "React Router, Saas"],
          status: "En cours",
+         githubcode: "https://github.com/PA-MAI/Kasa",
+         githubpage: "",
+         soutenance: soutenanceKasa,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
       },
       {
          id: 6,
-         title: "SITE VITRINE",
-         subtitle: "Corporate website",
-         description: "Site vitrine moderne pour une entreprise de services",
-         color: "#5d4a3a",
-         technologies: ["React", "Gatsby", "GraphQL"],
+         title: "Learn@Home",
+         subtitle:
+            "site de relation enfants en difficulté et bénévoles, scénario de projet p10 de formation ",
+         description:
+            "Users Stories, Kanban, maquettes et UX design sous Figma, cahier des charges",
+         color: "#9a9a9a",
+         technologies: [
+            "Gestion de projet Agile",
+            "Kanban sous Trello",
+            "Figma",
+         ],
          status: "Terminé",
+         githubcode: "",
+         trellopage: "https://trello.com/b/rQBKDimR/kanban-learnhome",
+         soutenance: soutenanceLearnAtHome,
+         githubIcon: trelloIcon,
+         pdfIcon: pdfIcon,
+      },
+      {
+         id: 7,
+         title: "Billed",
+         subtitle: "application RH - projet de tests projet P9 de formation ",
+         description:
+            " Fonctionne avec Billed-app-FR-Back, tester son application avec des tests unitaires, d'intégration et End-to-End, projet p9 de formation",
+         color: "#5d4a3a",
+         technologies: [
+            "Jest",
+            "Eslint",
+            "Testing Library",
+            "Validation W3C Html et Css",
+            "ecoindex",
+         ],
+         status: "Terminé",
+         githubcode: "https://github.com/PA-MAI/Billed-app-FR-Front",
+         githubpage: "https://pa-mai.github.io/Billed-app-FR-Front/",
+         soutenance: soutenanceBilled,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+      },
+      {
+         id: 8,
+         title: "Les petits plats",
+         subtitle: "site gallerie de recettes, projet P7 de formation ",
+         description:
+            "projet GreenIt, fonctionnement des algorithmes,Programmation Fonctionnelle vs itérative",
+         color: "#9a9a9a",
+         technologies: [
+            "Eslint",
+            "Api",
+            "JSBen.ch",
+            "Validation W3C Html et Css",
+            "ecoindex",
+         ],
+         status: "Terminé",
+         githubcode: "https://github.com/PA-MAI/LesPetitsPlats",
+         githubpage: "https://pa-mai.github.io/LesPetitsPlats/",
+         soutenance: soutenancePetitsPlats,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
       },
       {
          id: 9,
          title: "Fisheyes",
-         subtitle: "site gallerie photo projet P6 de formation ",
+         subtitle: "site gallerie photo, projet P6 de formation ",
          description: "projet React design patterns et accessibilité",
          color: "#5d4a3a",
          technologies: ["javascript", "Aria", "patterns", "accessibilité"],
          status: "Terminé",
+         githubcode: "https://github.com/PA-MAI/Front-End-Fisheye",
          githubpage: "https://pa-mai.github.io/Front-End-Fisheye/",
-         soutenance: "../docs/soutenanceFisheyes.pdf",
-         githubIcon: "https://cdn-icons-png.flaticon.com/512/733/733553.png",
-         pdfIcon: "https://cdn-icons-png.flaticon.com/512/337/337946.png",
+         soutenance: soutenanceFisheyes,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
       },
    ],
    experiencesData: [
@@ -343,9 +407,9 @@ const DataPerso = {
          certificat: img2,
          status: "CDI",
          technologies: [
-            "Remplacements occasionnels du responsable informatique, Encadrement des stagiaires et des jobs d’été, gestion des changements (TCO).",
+            "Remplacements occasionnels du responsable informatique, Encadrement des stagiaires et des jobs d’été, gestion des changements (TCO) de 4 filiales du groupe Alcen.",
             "SQL Développement vues et rapports Crystal report sous ERP Topsolid, gestion de bases de données SQL Server et MySQL.",
-            "Administration et Sécurité des systèmes AD MS2008-2012 et des accès, Virtualisation de 4 filiales du groupe Alcen",
+            "Administration et Sécurité des systèmes AD MS2008-2012 et des accès, Virtualisation ",
             "Supervision des serveurs et services critiques (Centréon, Nagvis), procédures et synoptiques.",
             "Gestion de parc informatique, gestion sur demande de la téléphonie IP, gestion des incidents et des demandes de service (GLPI).",
             "Déploiement et support N2 N3 aux utilisateurs et infrastructures systèmes et réseaux informatique et industriels .",

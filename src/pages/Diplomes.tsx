@@ -2,20 +2,41 @@ import React from "react";
 import { motion } from "motion/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SquareChevronLeft, MoveRight } from "lucide-react";
+import { useAppSelector } from "@/redux/hooks";
 import DataPerso from "../data/dataPerso";
 import { CarrouselPhoto } from "../components/carrouselPhoto";
 
 export default function Diplomes() {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const diplomes = DataPerso.diplomesData.find(p => p.id === parseInt(id || "0"));
+   const { id } = useParams();
+   const diplomes = DataPerso.diplomesData.find(
+      (p) => p.id === parseInt(id || "0"),
+   );
+   const diplomesList = DataPerso.diplomesData;
 
+   const [selectedDiplome, setSelectedDiplome] = React.useState(diplomes);
+
+
+//  const diplomes = useAppSelector((state) => state.diplomes);
+
+//  const diplome = React.useMemo(() => {
+//     return diplomes.find((p) => p.id === Number(id));
+//  }, [diplomes, id]);
+
+//  const [selectedDiplome, setSelectedDiplome] = React.useState(null);
+
+//  React.useEffect(() => {
+//     if (diplome) {
+//        setSelectedDiplome(diplome);
+//     }
+//  }, [diplome]);
+//    //const diplomesList = useAppSelector((state) => state.diplomes.list);
+
+   
   const textureBeige = 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
   const textureGray = 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
   
-  const diplomesList = DataPerso.diplomesData;
-
-  const [selectedDiplome, setSelectedDiplome] = React.useState(diplomes);
+  
   return (
      <div
         className="w-screen h-screen overflow-hidden "

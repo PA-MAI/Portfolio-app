@@ -9,7 +9,7 @@ import apeb from "@/assets/img/apeb.jpg";
 import pompier from "@/assets/img/pompier.jpg";
 import alsymex from "@/assets/img/alsymex.jpg";
 import activons from "@/assets/img/activonsnous.png";
-import axido from "@/assets/img/axido.jpg";
+import axido from "@/assets/img/Axido.jpg";
 import infodis from "@/assets/img/infodis.jpg";
 import aviva from "@/assets/img/aviva.jpg";
 import cnb from "@/assets/img/cnb.png";

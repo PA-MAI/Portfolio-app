@@ -111,11 +111,11 @@ export function BrandingFolder({ rotation, title, subtitle, color, logo, link, d
 
           {/* Title */}
           <div className="absolute top-10 left-10 right-10 z-10">
-            <h2 className="text-white tracking-[0.15em] leading-tight" style={{ fontWeight: 'bold', fontSize: large ? '45px' : '32px' }}>
+            <h2 className="text-white tracking-[0.15em] leading-tight" style={{ fontWeight: 'bold', fontSize: large ? '35px' : '32px' }}>
               {title}
             </h2>
             {subtitle && (
-              <h3 className="text-white/90 tracking-[0.15em] mt-1" style={{ fontSize: large ? '28px' : '22px' }}>
+              <h3 className="text-white/90 tracking-[0.15em] mt-1" style={{ fontSize: large ? '24px' : '20px' }}>
                 {subtitle}
               </h3>
             )}

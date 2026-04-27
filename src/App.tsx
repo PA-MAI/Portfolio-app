@@ -85,7 +85,7 @@ export default function App() {
                  rotation={globalRotation}
                  color="#c9b596"
                  title="MES PROJETS "
-                 subtitle="★ ACTUELS & EN FORMATION"
+                 subtitle="★ PERSONNELS & FORMATIONNELS"
                  logo="PROJETS"
                  link="/projets"
                  //link={<Link to="/projets" />}

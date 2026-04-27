@@ -75,7 +75,7 @@ export default function ProjetDetail() {
            >
               <button
                  onClick={() => navigate("/projets")}
-                 className="flex flex-row items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
+                 className="flex flex-col items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
               >
                  <SquareChevronLeft
                     size={20}
@@ -128,7 +128,7 @@ export default function ProjetDetail() {
                  initial={{ opacity: 0, x: 100, rotateZ: 5 }}
                  animate={{ opacity: 1, x: 0, rotateZ: 0 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
-                 className="flex flex-col justify-between absolute rounded-2xl shadow-2xl overflow-hidden"
+                 className="flex justify-between absolute rounded-2xl shadow-2xl overflow-hidden"
                  style={{
                     right: "31.5%",
                     top: "16px",
@@ -142,6 +142,7 @@ export default function ProjetDetail() {
                     paddingRight: "10px",
                     paddingLeft: "30%",
                     paddingBottom: "20px",
+                    flexDirection: "row",
                  }}
               >
                  {/* Texture réaliste overlay */}
@@ -180,7 +181,17 @@ export default function ProjetDetail() {
                  />
 
                  {/* Logo circulaire en haut */}
-                 <div className="absolute z-10">
+                 <div
+                    className="absolute z-10"
+                    style={{
+                       top: "20px",
+                       left: "60px",
+                       justifyContent: "space-between",
+                       flexDirection: "row",
+                       alignItems: "center",
+                       display: "flex",
+                    }}
+                 >
                     <div
                        className="flex items-center justify-center border-4 border-white/60 inset-shadow-sm"
                        style={{
@@ -194,27 +205,43 @@ export default function ProjetDetail() {
                        }}
                     >
                        <span
-                          className=" text-white/90 tracking-[0.2em]"
+                          className="tracking-[0.2em] relative"
                           style={{
-                             fontSize: "42px",
+                             width: "220px",
+                             height: "80px",
+                             color: "#c9b596",
+                             top: "5px",
+                             left: "0px",
+                             fontSize: "46px",
                              fontFamily: "serif",
-                             textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+                             textShadow: "4px 2px 4px rgba(0,0,0,0.5)",
                           }}
                        >
-                          ID@
+                          @Projet
                        </span>
                     </div>
                  </div>
 
                  {/* Informations */}
                  <div
-                    className="absolute top-20 left-16 right-16 text-white/80 z-10 "
+                    className="absolute top-20 left-16 right-16 text-white/80 z-10 overflow-hidden "
                     style={{
-                       marginTop: "148px",
-                       marginLeft: "20px",
+                       boxShadow: "4px 2px 4px rgba(0,0,0,0.5)",
+                       marginTop: "10px",
+                       marginLeft: "8px",
+                       marginRight: "20px",
+                       padding: "5px",
                        height: "280px",
+                       borderRadius: "5px",
                     }}
                  >
+                    {project.img && (
+                       <img
+                          src={project.img}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                       />
+                    )}
                     <p
                        className="mb-10 tracking-[0.15em] text-white/90"
                        style={{ fontSize: "18px" }}
@@ -295,10 +322,10 @@ export default function ProjetDetail() {
                  <div className="absolute inset-0 flex padding-20 justify-center z-10">
                     <div className="text-center text-white/80 px-16">
                        <p
-                          className="mb-6 tracking-[0.15em] text-white/60"
+                          className=" tracking-[0.15em] text-white/60"
                           style={{
-                             fontSize: "13px",
-                             paddingTop: "20px",
+                             fontSize: "12px",
+                             paddingTop: "12px",
                              paddingLeft: "20px",
                           }}
                        >
@@ -308,12 +335,23 @@ export default function ProjetDetail() {
                           className="tracking-[0.15em] leading-tight"
                           style={{
                              color: "white",
-                             fontSize: "22px",
-                             padding: "20px",
+                             fontSize: "16px",
+                             paddingTop: "12px",
+                             paddingLeft: "20px",
                           }}
                        >
                           {project.subtitle.toUpperCase()}
                        </h2>
+                       <p
+                          className="text-white/90 tracking-wide leading-relaxed"
+                          style={{
+                             fontSize: "12px",
+                             paddingTop: "0px",
+                             paddingLeft: "20px",
+                          }}
+                       >
+                          {project.description}
+                       </p>
                     </div>
                  </div>
               </motion.div>
@@ -397,7 +435,7 @@ export default function ProjetDetail() {
                        className="tracking-[0.2em]"
                        style={{
                           fontSize: "26px",
-                          paddingTop: "20px",
+                          paddingTop: "16px",
                           paddingLeft: "80px",
                           color: "white",
                        }}
@@ -411,38 +449,32 @@ export default function ProjetDetail() {
                     <p
                        className="text-blue/30 tracking-[0.15em] mb-8"
                        style={{
-                          fontSize: "22px",
+                          fontSize: "12px",
                           paddingTop: "60px",
                           paddingLeft: "80px",
+                          paddingRight: "12px",
                        }}
                     >
-                       {project.title.toLowerCase().replace(/\s+/g, "")}.com
+                       {project.contexte}
                     </p>
 
-                    <p
-                       className="text-white/90 tracking-wide leading-relaxed"
-                       style={{
-                          fontSize: "15px",
-                          paddingTop: "5px",
-                          paddingLeft: "80px",
-                       }}
-                    >
-                       {project.description}
-                    </p>
-                    {Boolean(project.trellopage ||
+                   
+                    {Boolean(
+                       project.trellopage ||
                        project.githubcode ||
                        project.githubpage ||
-                       project.soutenance) && (
+                       project.soutenance,
+                    ) && (
                        <div
                           className="flex gap-4 mt-10"
                           style={{
-                             paddingLeft: "0px",
+                             paddingLeft: "80px",
                              paddingTop: "16px",
-                             flexDirection: "column",
+                             flexDirection: "row",
                              alignItems: "center",
                              alignContent: "center",
                              width: "100%",
-                             justifyContent: "center",
+                             justifyContent: "space-around",
                              gap: "12px",
                           }}
                        >

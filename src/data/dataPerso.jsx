@@ -6,6 +6,7 @@ import sql from "@/assets/img/sql.jpg";
 import sio from "@/assets/img/btssio.jpg";
 import gefi from "@/assets/img/tech94.jpg";
 import apeb from "@/assets/img/apeb.jpg";
+import pompier from "@/assets/img/pompier.jpg";
 import alsymex from "@/assets/img/alsymex.jpg";
 import activons from "@/assets/img/activonsnous.png";
 import axido from "@/assets/img/axido.jpg";
@@ -27,6 +28,18 @@ import soutenancePetitsPlats from "@/assets/pdf/soutenancePetitsPlats.pdf";
 import soutenanceBilled from "@/assets/pdf/soutenanceBilled.pdf";
 import soutenanceLearnAtHome from "@/assets/pdf/soutenanceLearnAtHome.pdf";
 import soutenanceKasa from "@/assets/pdf/soutenanceKasa.pdf";
+import soutenanceSportSee from "@/assets/pdf/SoutenanceSportSee.pdf";
+import soutenanceArgentBank from "@/assets/pdf/SoutenanceArgentBank.pdf";
+import soutenanceHRNet from "@/assets/pdf/SoutenanceHRNet.pdf";
+import petitplats from "@/assets/img/petitsplats.jpg";
+import fisheyes from "@/assets/img/fisheyes.jpg";
+import billed from "@/assets/img/billed.jpg";
+import learnathome from "@/assets/img/learnathome.jpg";
+import activonsnous from "@/assets/img/activonsnous.jpg";
+import portfolio from "@/assets/img/portfolio.jpg";
+
+//import { mock } from "node:test";
+
 //import { link } from "node:fs";
 
 //image poignée à ajouter dans le dossier src/assets/img
@@ -52,6 +65,7 @@ const img4car = [assr, itil, iso, sql];
 const img5car = [sio];
 const img6car = [gefi];
 const img7car = [apeb];
+const img8car = [pompier];
 
 const DataPerso = {
    ShootsData: [
@@ -247,81 +261,197 @@ const DataPerso = {
 
    projectsData: [
       {
-         id: 1,
-         title: "PROJET PORTFOLIO",
-         subtitle: "Site web personnel",
+         id: 13,
+         title: "Activons-nous",
+         subtitle: "Site web associatif à but non lucratif",
          description:
-            "Création de ce portfolio interactif avec React et TypeScript",
+            "site permettant de mettre en relation des bénévoles et des personnes en difficulté, avec un annuaire de ressources locales",
+         color: "#c9b596",
+         technologies: [
+            "WordPress",
+            "plugins HelloAsso",
+            "react",
+            "TypeScript",
+            "Tailwind CSS",
+            "redirections",
+         ],
+         status: "En cours",
+         contexte:
+            " projet professionnel en cours de développement, reabilitation d'un site associatif existant , développement de nouvelles fonctionnalités et amélioration de l'expérience utilisateur",
+         objectifs: [
+            "Debug des moyens de paiement des dons en ligne",
+            "Améliorer les performances de l’application avec Lighthouse",
+            "Moderniser le code (React, Vite, Redux)",
+            "revisiter les éléments des langages et d'intégration pour améliorer l'accessibilité et le référencement",
+            "Écrire la documentation technique de votre projet avec Markdown Editor Dillinger.io",
+         ],
+
+         githubcode: "https://github.com/PA-MAI/HRnet",
+         githubpage: "",
+         soutenance: soutenanceHRNet,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+         img: activonsnous,
+      },
+      {
+         id: 1,
+         title: "Portfolio-app",
+         subtitle:
+            "application compétences et projets personnels",
+         description:
+            "Création de ce portfolio interactif avec React,tailwind et TypeScript",
          color: "#c9b596",
          technologies: ["React", "TypeScript", "Tailwind CSS"],
          status: "En cours",
+         contexte:
+            " Contacts, SoftSkills, technologie et présentation des projets, des diplomes et des expériences professionnelles, avec des liens vers les soutenances, les codes sources et les pages de présentation de chaque projet",
+         objectifs: [
+            "présenter de manière claire et attractive mes compétences, mes expériences professionnelles et mes projets personnels",
+            "mettre en avant mes compétences techniques et mes réalisations de manière interactive et visuelle",
+            "offrir une expérience utilisateur fluide et agréable pour les visiteurs du site",
+         ],
+
+         githubcode: "https://github.com/PA-MAI/Portfolio-app",
+         githubpage: "",
+         soutenance: "",
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+         img: portfolio,
       },
       {
          id: 2,
-         title: "APPLICATION E-COMMERCE",
-         subtitle: "Plateforme de vente en ligne",
+         title: "HRNet-app",
+         subtitle: "Plateforme bancaire en ligne",
          description:
-            "Développement d'une boutique en ligne complète avec gestion de panier",
-         color: "#9a9a9a",
-         technologies: ["React", "Redux", "Node.js"],
+            "Convertir une application bancaire Jquery buggée en une application bancaire avec React et Redux Toolkit stable et performante",
+         color: "#c9b596",
+         technologies: [
+            "React",
+            "Redux",
+            "Reduxtoolkit",
+            "Node.js",
+            "Express",
+            "MongoDB",
+         ],
          status: "Terminé",
+         contexte: " projet p14 de formation ",
+         objectifs: [
+            "Transformer en composants réutilisables les fonctionnalités existantes sur le formulaire et tableau actuellement en jquery",
+            "Améliorer les performances de l’application avec Lighthouse",
+            "Moderniser le code (React, Vite, Redux)",
+            "Créer et publier un composant réutilisable via une librairie npm à utiliser dans l’application HRnet",
+            "Écrire la documentation technique de votre projet avec Markdown Editor Dillinger.io et publiez-la sur GitHub Pages",
+         ],
+
+         githubcode: "https://github.com/PA-MAI/HRnet",
+         githubpage: "",
+         soutenance: soutenanceHRNet,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+         img: "",
       },
       {
          id: 3,
-         title: "DASHBOARD ANALYTICS",
-         subtitle: "Interface de visualisation",
-         description: "Tableau de bord pour analyser les données en temps réel",
+         title: "ArgentBank-app",
+         subtitle: "application bancaire en ligne avec React et Redux Toolkit",
+         description:
+            "P13 Gérez votre application React avec Redux et Redux Toolkit",
          color: "#5d4a3a",
-         technologies: ["Angular", "TypeScript", "D3.js"],
+         technologies: [
+            "React",
+            "Redux",
+            "Redux Toolkit",
+            "Node.js",
+            "Endpoint d'API",
+            "MongoDB",
+         ],
          status: "En cours",
+         contexte: " projet p13 de formation ",
+         objectifs:
+            "Gerer l'application React avec Redux et Redux Toolkit, gestion des states globaux, gestion des données asynchrones avec Redux Thunk, gestion des erreurs et des états de chargement,gestion de Auth.js et de la sécurité des données, gestion de la persistance des données avec Redux Persist, gestion de la performance et de l'optimisation avec Reselect",
+         githubcode: "https://github.com/PA-MAI/argentbank-app",
+         githubpage: "",
+         soutenance: soutenanceArgentBank,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+         img: "",
       },
       {
          id: 4,
-         title: "API REST",
-         subtitle: "Backend Node.js",
-         description: "API RESTful pour applications mobiles et web",
-         color: "#9a9a9a",
-         technologies: ["Node.js", "Express", "MongoDB"],
+         title: "SportSee-app",
+         subtitle:
+            "site de gestion physique et mentale pour sportifs professionnels et amateurs",
+         description:
+            "tableaux de bord avec API RESTful pour applications mobiles et web avec charts Recharts.D3 avec backend Node.js et base de données MongoDB",
+         color: "#c9b596",
+         technologies: [
+            "Node.js",
+            "Express",
+            "MongoDB",
+            "mock",
+            "Axios",
+            "Recharts",
+            "fallback",
+         ],
          status: "Terminé",
+         contexte: " projet p12 de formation ",
+         objectifs:
+            "Afficher des tableaux de bord dynamiques à partir de données d’une API (ou données locales en fallback)",
+         githubcode: "https://github.com/PA-MAI/SportSee-app",
+         githubpage: "",
+         soutenance: soutenanceSportSee,
+         githubIcon: githubIcon,
+         pdfIcon: pdfIcon,
+         img: "",
       },
       {
          id: 5,
-         title: "Kasa App",
+         title: "Kasa-App",
          subtitle: "Application pour la location de logements ",
-         description: "Creer une Application mobile React complète, projet p11 de formation ",
+         description: "Creer une Application mobile React complète ",
          color: "#5d4a3a",
-         technologies: ["composants Create React App",  "Props", "State", "React Router, Saas"],
+         technologies: [
+            "composants Create React App",
+            "Props",
+            "State",
+            "React Router, Saas",
+         ],
          status: "En cours",
+         contexte: " projet p11 de formation ",
+         objectifs: "",
          githubcode: "https://github.com/PA-MAI/Kasa",
          githubpage: "",
          soutenance: soutenanceKasa,
          githubIcon: githubIcon,
          pdfIcon: pdfIcon,
+         img: "",
       },
       {
          id: 6,
          title: "Learn@Home",
-         subtitle:
-            "site de relation enfants en difficulté et bénévoles, scénario de projet p10 de formation ",
+         subtitle: "site de relation enfants en difficulté et bénévoles",
          description:
             "Users Stories, Kanban, maquettes et UX design sous Figma, cahier des charges",
-         color: "#9a9a9a",
+         color: "#c9b596",
          technologies: [
             "Gestion de projet Agile",
             "Kanban sous Trello",
             "Figma",
          ],
          status: "Terminé",
+         contexte: "scénario de projet p10 de formation ",
+         objectifs: "",
          githubcode: "",
          trellopage: "https://trello.com/b/rQBKDimR/kanban-learnhome",
          soutenance: soutenanceLearnAtHome,
          githubIcon: trelloIcon,
          pdfIcon: pdfIcon,
+         img: learnathome,
       },
       {
          id: 7,
          title: "Billed",
-         subtitle: "application RH - projet de tests projet P9 de formation ",
+         subtitle: "application RH de gestion de notes de frais",
          description:
             " Fonctionne avec Billed-app-FR-Back, tester son application avec des tests unitaires, d'intégration et End-to-End, projet p9 de formation",
          color: "#5d4a3a",
@@ -333,19 +463,22 @@ const DataPerso = {
             "ecoindex",
          ],
          status: "Terminé",
+         contexte: " projet p9 de formation ",
+         objectifs: "",
          githubcode: "https://github.com/PA-MAI/Billed-app-FR-Front",
          githubpage: "https://pa-mai.github.io/Billed-app-FR-Front/",
          soutenance: soutenanceBilled,
          githubIcon: githubIcon,
          pdfIcon: pdfIcon,
+         img: billed,
       },
       {
          id: 8,
          title: "Les petits plats",
-         subtitle: "site gallerie de recettes, projet P7 de formation ",
+         subtitle: "site gallerie de recettes avec menus interactifs",
          description:
             "projet GreenIt, fonctionnement des algorithmes,Programmation Fonctionnelle vs itérative",
-         color: "#9a9a9a",
+         color: "#c9b596",
          technologies: [
             "Eslint",
             "Api",
@@ -354,25 +487,31 @@ const DataPerso = {
             "ecoindex",
          ],
          status: "Terminé",
+         contexte: " projet p7 de formation ",
+         objectifs: "",
          githubcode: "https://github.com/PA-MAI/LesPetitsPlats",
          githubpage: "https://pa-mai.github.io/LesPetitsPlats/",
          soutenance: soutenancePetitsPlats,
          githubIcon: githubIcon,
          pdfIcon: pdfIcon,
+         img: petitplats,
       },
       {
          id: 9,
          title: "Fisheyes",
-         subtitle: "site gallerie photo, projet P6 de formation ",
-         description: "projet React design patterns et accessibilité",
+         subtitle: "site gallerie photo ",
+         description: "projet React avec accessibilité et design patterns",
          color: "#5d4a3a",
          technologies: ["javascript", "Aria", "patterns", "accessibilité"],
          status: "Terminé",
+         contexte: " projet p6 de formation ",
+         objectifs: "",
          githubcode: "https://github.com/PA-MAI/Front-End-Fisheye",
          githubpage: "https://pa-mai.github.io/Front-End-Fisheye/",
          soutenance: soutenanceFisheyes,
          githubIcon: githubIcon,
          pdfIcon: pdfIcon,
+         img: fisheyes,
       },
    ],
    experiencesData: [
@@ -583,7 +722,7 @@ const DataPerso = {
             "exercices de sauvetage et de lutte contre les incendies sur aéronefs",
             "Commandement d'une équipe de 15 pompiers (équipe de piste) lors d'interventions sur des incendies ou accidents impliquant des aéronefs",
          ],
-         photo: img6car,
+         photo: img8car,
          status: "Diplômé niv.4",
          options: ["Parcour Sécurité incendie sur aéronefs"],
       },

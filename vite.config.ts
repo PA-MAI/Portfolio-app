@@ -5,7 +5,6 @@
 
   export default defineConfig({
      plugins: [react()],
-     base: "/Portfolio-app/",
      resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
         alias: {

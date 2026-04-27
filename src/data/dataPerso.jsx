@@ -33,7 +33,7 @@ import soutenanceArgentBank from "@/assets/pdf/SoutenanceArgentBank.pdf";
 import soutenanceHRNet from "@/assets/pdf/SoutenanceHRNet.pdf";
 import petitplats from "@/assets/img/petitsplats.jpg";
 import fisheyes from "@/assets/img/fisheyes.jpg";
-import billed from "@/assets/img/billed.jpg";
+import billed from "@/assets/img/Billed.jpg";
 import learnathome from "@/assets/img/learnathome.jpg";
 import activonsnous from "@/assets/img/activonsnous.jpg";
 import portfolio from "@/assets/img/portfolio.jpg";

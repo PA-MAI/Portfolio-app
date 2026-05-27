@@ -343,7 +343,7 @@ export default function Experiences() {
                     transform:
                        viewport === "tablet"
                           ? `scale(${contentScale})`
-                          : undefined,
+                          : `scale(${contentScale})`,
                     transformOrigin: "top center",
                     position: "relative",
                  }}
@@ -685,7 +685,6 @@ export default function Experiences() {
                           {selectedExperience.company}
                        </p>
                     </div>
-                    
                  </motion.div>
 
                  {/* DOSSIER 4 - Arrière-plan */}

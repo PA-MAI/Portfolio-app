@@ -350,7 +350,7 @@ export default function Diplomes() {
                     transform:
                        viewport === "tablet"
                           ? `scale(${contentScale})`
-                          : undefined,
+                          : `scale(${contentScale})`,
                     transformOrigin: "top center",
                     position: "relative",
                  }}
@@ -702,10 +702,8 @@ export default function Diplomes() {
                           }}
                        >
                           {selectedDiplome.options?.[0]}
-                          
                        </p>
                     </div>
-                    
                  </motion.div>
 
                  {/* DOSSIER 4 - Arrière-plan */}

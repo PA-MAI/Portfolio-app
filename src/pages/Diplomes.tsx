@@ -1,561 +1,751 @@
 import React from "react";
 import { motion } from "motion/react";
-import { useNavigate, useParams } from "react-router-dom";
-import { SquareChevronLeft, MoveRight } from "lucide-react";
-import { useAppSelector } from "@/redux/hooks";
+import { useParams } from "react-router-dom";
 import DataPerso from "../data/dataPerso";
 import { CarrouselPhoto } from "../components/carrouselPhoto";
+import { NavBar } from "../components/NavBar";
+import { useViewport } from "../hooks/useViewport";
 
 export default function Diplomes() {
-  const navigate = useNavigate();
-   const { id } = useParams();
-   const diplomes = DataPerso.diplomesData.find(
-      (p) => p.id === parseInt(id || "0"),
-   );
-   const diplomesList = DataPerso.diplomesData;
+  const { id } = useParams();
+  const diplomes = DataPerso.diplomesData.find(p => p.id === parseInt(id || "0"));
+  const diplomesList = DataPerso.diplomesData;
+  const [selectedDiplome, setSelectedDiplome] = React.useState(diplomes || diplomesList[0]);
 
-   const [selectedDiplome, setSelectedDiplome] = React.useState(diplomes);
+  const viewport = useViewport();
+  const isMobile = viewport === 'mobile';
 
+  const [contentScale, setContentScale] = React.useState(() => {
+    const w = window.innerWidth;
+    return w >= 1280 ? 1 : Math.min(w / 1200, 1);
+  });
+  React.useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setContentScale(w >= 1280 ? 1 : Math.min(w / 1200, 1));
+    };
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
-//  const diplomes = useAppSelector((state) => state.diplomes);
-
-//  const diplome = React.useMemo(() => {
-//     return diplomes.find((p) => p.id === Number(id));
-//  }, [diplomes, id]);
-
-//  const [selectedDiplome, setSelectedDiplome] = React.useState(null);
-
-//  React.useEffect(() => {
-//     if (diplome) {
-//        setSelectedDiplome(diplome);
-//     }
-//  }, [diplome]);
-//    //const diplomesList = useAppSelector((state) => state.diplomes.list);
-
-   
   const textureBeige = 'https://images.unsplash.com/photo-1616410731309-4e07df6b5d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrcmFmdCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3NjQ1NDczNzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
   const textureGray = 'https://images.unsplash.com/photo-1731686648504-652578d9e9e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmF5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc2NDU0NzM3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
-  
-  
+
+  const textureLayers = (url: string) => (
+    <>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${url})`, backgroundSize: 'cover', mixBlendMode: 'multiply', opacity: 0.4, borderRadius: 'inherit' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.1) 0%, transparent 25%)', mixBlendMode: 'multiply', borderRadius: 'inherit' }} />
+    </>
+  );
+
+  //const shortSubtitle = (subtitle: string) => subtitle.split(' ').slice(0, 3).join(' ');
+
   return (
      <div
-        className="w-screen h-screen overflow-hidden "
-        style={{ backgroundColor: "#e8dcc8" }}
+        style={{
+           backgroundColor: "#e8dcc8",
+           width: "100vw",
+           height: isMobile ? "auto" : "100vh",
+           minHeight: "100vh",
+           overflowX: "hidden",
+           overflowY: isMobile ? "auto" : "hidden",
+           display: "flex",
+           flexDirection: "column",
+        }}
      >
-        {/* Bandeau de navigation */}
-        <motion.div
-           initial={{ y: -100 }}
-           animate={{ y: 0 }}
-           transition={{ duration: 0.6 }}
-           className="relative flex w-full shadow-2xl overflow-hidden"
-           style={{
-              height: "50px",
-              backgroundColor: "#5d4a3a",
-           }}
-        >
-           {/* Texture multiply */}
-           <div
-              className="absolute inset-0 pointer-events-none z-[1]"
-              style={{
-                 backgroundImage: `url(${textureBeige})`,
-                 backgroundSize: "cover",
-                 backgroundPosition: "center",
-                 mixBlendMode: "multiply",
-                 opacity: 0.6,
-              }}
-           />
+        <NavBar title="FORMATIONS" backPath="/" />
 
-           {/* Texture overlay */}
+        {/* ── MOBILE LAYOUT ── */}
+        {isMobile && (
            <div
-              className="absolute inset-0 pointer-events-none z-[2]"
               style={{
-                 backgroundImage: `url(${textureBeige})`,
+                 display: "flex",
+                 flexDirection: "row",
+                 flex: 1,
+                 minHeight: "calc(100vh - 44px)",
+                 backgroundImage: `url(${textureGray})`,
+                 backgroundRepeat: "repeat",
                  backgroundSize: "cover",
-                 backgroundPosition: "center",
-                 mixBlendMode: "overlay",
-                 opacity: 0.3,
-              }}
-           />
-
-           {/* Contenu – mêmes règles flex qu’avant */}
-           <div
-              className="relative z-[10] flex h-full w-full px-12"
-              style={{
-                 width: "100%",
-                 justifyContent: "space-around",
-                 alignItems: "center",
               }}
            >
-              <button
-                 onClick={() => navigate("/")}
-                 className="flex items-center gap-3 text-white/90 hover:text-white transition-colors duration-300"
-              >
-                 <SquareChevronLeft
-                    size={20}
-                    className="text-white"
-                    style={{
-                       fontSize: "20px",
-                       cursor: "pointer",
-                       alignItems: "center",
-                       marginRight: "5px",
-                    }}
-                 />
-                 <span
-                    className="tracking-[0.15em]"
-                    style={{ fontSize: "20px", cursor: "pointer" }}
-                 >
-                    RETOUR ACCUEIL
-                 </span>
-              </button>
-
-              <h1
-                 className="text-white/60 tracking-[0.2em]"
-                 style={{ fontSize: "20px" }}
-              >
-                 PAGE DIPLOMES
-              </h1>
-           </div>
-        </motion.div>
-
-        {/* Contenu - Dossiers empilés */}
-        <div
-           className="flex-1 flex items-center justify-center p-12 overflow-hidden"
-           style={{
-              backgroundImage: `url(${textureGray})`,
-              backgroundRepeat: "repeat",
-              backgroundSize: "cover",
-           }}
-        >
-           <div
-              className="relative"
-              style={{ width: "1200px", height: "850px" }}
-           >
-              {/* DOSSIER 1 - Beige à droite (au-dessus) */}
-              <motion.div
-                 initial={{ opacity: 0, x: 100, rotateZ: 5 }}
-                 animate={{ opacity: 1, x: 0, rotateZ: 0 }}
-                 transition={{ duration: 0.8, delay: 0.2 }}
-                 className="flex absolute rounded-2xl shadow-2xl overflow-hidden"
+              {/* Left: content cards */}
+              <div
                  style={{
-                    right: "25.5%",
-                    top: "16px",
-                    width: "55%",
-                    height: "98%",
-                    backgroundColor: "#c9b596",
-                    zIndex: 1,
-                    transform: "rotate(-2deg)",
-                    boxShadow: " 0 0 20px rgba(0,0,0,0.1)",
-                    paddingTop: "20px",
-                    paddingRight: "10px",
-                    paddingLeft: "30%",
-                    paddingBottom: "20px",
+                    flex: 1,
+                    overflowY: "auto",
+                    padding: "10px 8px 32px 12px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 10,
+                    minWidth: 0,
                  }}
               >
-                 {/* Texture réaliste overlay */}
+                 {/* Titre */}
                  <div
-                    className="absolute inset-0 pointer-events-none rounded-2xl shadow-2xl  z-[1]"
                     style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "multiply",
-                       opacity: 0.5,
-                    }}
-                 />
-                 <div
-                    className="absolute inset-0 pointer-events-none rounded-2xl shadow-2xl  z-[2]"
-                    style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "overlay",
-                       opacity: 0.2,
-                    }}
-                 />
-                 <div
-                    className="flex flex-col justify-center align-end absolute inset-0 rounded-2xl  pointer-events-none z-[3]"
-                    style={{
-                       background: `
-                  radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%),
-                  radial-gradient(ellipse at 85% 70%, rgba(0,0,0,0.08) 0%, transparent 130%),
-                  radial-gradient(ellipse at 45% 60%, rgba(255,255,255,0.06) 0%, transparent 120%)
-                `,
-                       mixBlendMode: "multiply",
-                    }}
-                 />
-
-                 {/* Logo circulaire en haut */}
-                 <div
-                    className="absolute z-10"
-                    style={{
-                       top: "20px",
-                       left: "60px",
-                       justifyContent: "space-between",
-                       flexDirection: "row",
-                       alignItems: "center",
-                       display: "flex",
+                       backgroundColor: "#5d4a3a",
+                       borderRadius: 14,
+                       overflow: "hidden",
+                       padding: "12px 14px",
+                       position: "relative",
                     }}
                  >
-                    <div
-                       className="flex items-center justify-center border-4 border-white/60 inset-shadow-sm"
-                       style={{
-                          right: "116px",
-                          top: "76px",
-                          width: "120px",
-                          height: "120px",
-                          borderRadius: "50%",
-                          backgroundColor: "rgba(255,255,255,0.08)",
-                          boxShadow: "inset 0 0 10px rgba(0,0.2,0.2,0.2)",
-                       }}
-                    >
-                       <span
-                          className=" text-white/90 tracking-[0.2em]"
+                    {textureLayers(textureBeige)}
+                    <div style={{ position: "relative", zIndex: 1 }}>
+                       <p
                           style={{
-                             color: "#c9b596",
-                             fontSize: "28px",
-                             fontFamily: "serif",
-                             textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+                             fontSize: 13,
+                             fontWeight: 700,
+                             color: "white",
+                             letterSpacing: "0.05em",
+                             marginBottom: 4,
+                             lineHeight: 1.3,
                           }}
                        >
-                          @FORMATION
-                       </span>
+                          {selectedDiplome.title}
+                       </p>
+                       <p
+                          style={{
+                             fontSize: 9,
+                             color: "rgba(255,255,255,0.6)",
+                          }}
+                       >
+                          {selectedDiplome.year} · {selectedDiplome.status}
+                       </p>
                     </div>
                  </div>
 
-                 {/* Informations */}
+                 {/* Facsimilé du diplôme */}
                  <div
-                    className="absolute top-20 left-16 right-16 text-white/80 z-10 "
                     style={{
-                       marginTop: "10px",
-                       paddingLeft: "20px",
-                       height: "280px",
+                       backgroundColor: "#a8a8a8",
+                       borderRadius: 14,
+                       overflow: "hidden",
+                       padding: "14px",
+                       position: "relative",
+                       display: "flex",
+                       flexDirection: "column",
+                       alignItems: "center",
                     }}
                  >
+                    {textureLayers(textureGray)}
                     <p
-                       className="mb-4 tracking-[0.15em] text-white/90"
-                       style={{ fontSize: "18px", fontWeight: "700" }}
+                       style={{
+                          position: "relative",
+                          zIndex: 1,
+                          fontSize: 8,
+                          color: "rgba(255,255,255,0.6)",
+                          letterSpacing: "0.15em",
+                          marginBottom: 10,
+                       }}
                     >
-                       DÉTAIL DU DIPLOME
-                       <br></br>
+                       FACSIMILÉ DU DIPLÔME
                     </p>
-                    <span
-                       className="mb-10 tracking-[0.15em] text-white/90"
-                       style={{ fontSize: "14px", fontWeight: "600" }}
-                    >
-                       <p className="tracking-[0.12em] text-white/90 mt-6">
-                          INSTITUTION:
-                       </p>
-                       {selectedDiplome.institution.map((tech, i) => (
-                          <p key={i} className="tracking-[0.12em] pl-4">
-                             • {tech}
-                          </p>
-                       ))}
-                    </span>
-                    <br></br>
                     <div
-                       className="space-y-3 text-white/90"
-                       style={{ fontSize: "12px" }}
+                       style={{
+                          position: "relative",
+                          zIndex: 1,
+                          display: "flex",
+                          justifyContent: "center",
+                       }}
                     >
-                       <p className="tracking-[0.12em] text-white/90 ">
-                          STATUS: {selectedDiplome.status},{" "}
-                          {selectedDiplome.year}
-                       </p>
-                       <p className="tracking-[0.12em] text-white/90 mt-6">
-                          TECHNOLOGIES:
-                       </p>
-                       {selectedDiplome.detail.map((tech, i) => (
-                          <p key={i} className="tracking-[0.12em] pl-4">
-                             • {tech}
-                          </p>
-                       ))}
+                       <CarrouselPhoto
+                          photos={selectedDiplome.photo}
+                          rotation={0}
+                          delay={0.2}
+                          zIndex={10}
+                          width={220}
+                          height={160}
+                       />
                     </div>
                  </div>
-              </motion.div>
 
-              {/* Onglets horizontaux */}
-              <motion.div
-                 initial={{ opacity: 0, y: 50, rotateZ: 1 }}
-                 animate={{ opacity: 1, y: 0, rotateZ: 0 }}
-                 transition={{ duration: 0.8, delay: 0.4 }}
-                 className="flex flex-row absolute top-14 -left-140 items-stretch gap-30 rounded-r-xl"
+                 {/* Détail */}
+                 <div
+                    style={{
+                       backgroundColor: "#c9b596",
+                       borderRadius: 14,
+                       overflow: "hidden",
+                       padding: "14px",
+                       position: "relative",
+                    }}
+                 >
+                    {textureLayers(textureBeige)}
+                    <div style={{ position: "relative", zIndex: 1 }}>
+                       <p
+                          style={{
+                             fontSize: 9,
+                             fontWeight: 700,
+                             color: "rgba(255,255,255,0.7)",
+                             letterSpacing: "0.1em",
+                             marginBottom: 6,
+                          }}
+                       >
+                          INSTITUTION
+                       </p>
+                       {selectedDiplome.institution.map((inst, i) => (
+                          <p
+                             key={i}
+                             style={{
+                                fontSize: 10,
+                                color: "white",
+                                lineHeight: 1.6,
+                             }}
+                          >
+                             • {inst}
+                          </p>
+                       ))}
+                       <p
+                          style={{
+                             fontSize: 9,
+                             fontWeight: 700,
+                             color: "rgba(255,255,255,0.7)",
+                             letterSpacing: "0.1em",
+                             marginTop: 10,
+                             marginBottom: 6,
+                          }}
+                       >
+                          COMPÉTENCES
+                       </p>
+                       {selectedDiplome.detail.map((tech, i) => (
+                          <p
+                             key={i}
+                             style={{
+                                fontSize: 9,
+                                color: "rgba(255,255,255,0.85)",
+                                lineHeight: 1.7,
+                             }}
+                          >
+                             • {tech}
+                          </p>
+                       ))}
+                       {selectedDiplome.options?.length > 0 && (
+                          <>
+                             <p
+                                style={{
+                                   fontSize: 9,
+                                   fontWeight: 700,
+                                   color: "rgba(255,255,255,0.7)",
+                                   letterSpacing: "0.1em",
+                                   marginTop: 10,
+                                   marginBottom: 4,
+                                }}
+                             >
+                                OPTION
+                             </p>
+                             {selectedDiplome.options.map((opt, i) => (
+                                <p
+                                   key={i}
+                                   style={{
+                                      fontSize: 9,
+                                      color: "rgba(255,255,255,0.85)",
+                                   }}
+                                >
+                                   {opt}
+                                </p>
+                             ))}
+                          </>
+                       )}
+                    </div>
+                 </div>
+              </div>
+
+              {/* Right: selection buttons */}
+              <div
                  style={{
-                    opacity: 0.7,
+                    width: 86,
+                    flexShrink: 0,
+                    overflowY: "auto",
+                    padding: "10px 6px 32px 2px",
+                    display: "flex",
                     flexDirection: "column",
-                    gap: "20px",
-                    alignItems: "enterc",
-                    justifyContent: "start",
-                    borderRadius: "0px 20px 20px 0px",
-                    backgroundColor: "transparent",
-                    padding: "8px",
-                    right: "1%",
-                    top: "50px",
-                    zIndex: 0,
+                    gap: 6,
+                    scrollbarWidth: "none",
                  }}
               >
                  {diplomesList.map((dip) => (
                     <button
                        key={dip.id}
                        onClick={() => setSelectedDiplome(dip)}
-                       className={`w-14 h-40 flex items-center 
-                  text-[11px] tracking-[0.2em]
-                  rounded-r-xl shadow-x2 hover:shadow-2xl 
-                  ${
-                     selectedDiplome.id === dip.id
-                        ? "bg-[#5d4a3a] text-white"
-                        : "bg-[#e6d8bf] text-[#5d4a3a]"
-                  }
-                `}
                        style={{
-                          justifyContent: "end",
-                          backgroundSize: "cover",
-                          backgroundImage: `url(${textureBeige})`,
-                          backgroundColor: "#c9b596",
-                          backgroundPosition: "center",
-                          //mixBlendMode: 'multiply',
-                          //writingMode: "vertical-rl",
-                          textOrientation: "mixed",
-                          borderRadius: "0px 20px 20px 0px",
-                          padding: "12px",
-                          marginLeft: "10px",
-                          marginRight: "0px",
-                          boxShadow: " 0 0 20px rgba(0,0,0,0.1)",
-                          zIndex: 10,
+                          width: "100%",
+                          minHeight: 62,
+                          borderRadius: 10,
+                          border: "none",
                           cursor: "pointer",
-                       }}
-                    >
-                       {dip.subtitle}
-                    </button>
-                 ))}
-              </motion.div>
-
-              {/* DOSSIER 2 - Gris au milieu */}
-              <motion.div
-                 initial={{ opacity: 0, y: 50, rotateZ: 1 }}
-                 animate={{ opacity: 1, y: 0, rotateZ: 0 }}
-                 transition={{ duration: 0.8, delay: 0.4 }}
-                 className="absolute rounded-2xl shadow-2xl overflow-hidden"
-                 style={{
-                    right: "52%",
-                    top: "180px",
-                    width: "30%",
-                    height: "38%",
-                    backgroundColor: "#a8a8a8",
-                    zIndex: 3,
-                    transform: "rotate(1deg)",
-                    boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
-                 }}
-              >
-                 {/* Texture grise */}
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[1]"
-                    style={{
-                       backgroundImage: `url(${textureGray})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "multiply",
-                       opacity: 0.5,
-                    }}
-                 />
-
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[2]"
-                    style={{
-                       backgroundImage: `url(${textureGray})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "overlay",
-                       opacity: 0.3,
-                    }}
-                 />
-
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[3]"
-                    style={{
-                       background: `
-                  radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%),
-                  radial-gradient(ellipse at 85% 70%, rgba(0,0,0,0.08) 0%, transparent 30%)
-                `,
-                       mixBlendMode: "multiply",
-                    }}
-                 />
-
-                 <div className="absolute inset-0 flex padding-20 justify-center z-10">
-                    <div
-                       className="flex text-center text-white/80 px-16"
-                       style={{
-                          // paddingTop: "20px",
-                          alignItems: "center",
-                          justifyContent: "start",
+                          backgroundColor:
+                             selectedDiplome.id === dip.id
+                                ? "#5d4a3a"
+                                : "#d4c4a8",
+                          color:
+                             selectedDiplome.id === dip.id
+                                ? "white"
+                                : "#5d4a3a",
+                          display: "flex",
                           flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "6px 5px",
+                          boxShadow:
+                             selectedDiplome.id === dip.id
+                                ? "0 2px 8px rgba(0,0,0,0.3)"
+                                : "0 1px 4px rgba(0,0,0,0.12)",
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          backgroundBlendMode:
+                             selectedDiplome.id === dip.id
+                                ? "multiply"
+                                : "normal",
+                          gap: 3,
                        }}
                     >
-                       <p
-                          className="mb-6 tracking-[0.15em] text-white/60"
+                       <span
                           style={{
-                             fontSize: "13px",
-                             padding: "20px",
-                             paddingLeft: "20px",
-                             fontWeight: "400",
-                             alignItems: "center",
+                             fontSize: 8,
+                             fontWeight: 700,
+                             letterSpacing: "0.04em",
+                             opacity: 0.85,
+                             textAlign: "center",
                           }}
                        >
-                          FACSIMILÉ DU DIPLOME
-                       </p>
-                       <CarrouselPhoto
-                          photos={selectedDiplome.photo}
-                          rotation={0}
-                          delay={0.2}
-                          zIndex={230}
-                       />
-                    </div>
-                 </div>
-              </motion.div>
+                          {dip.year}
+                       </span>
+                       <span
+                          style={{
+                             fontSize: 7.5,
+                             letterSpacing: "0.02em",
+                             textAlign: "center",
+                             lineHeight: 1.3,
+                          }}
+                       >
+                          {/* shortSubtitle(dip.subtitle)} */}
+                          {dip.subtitle}
+                       </span>
+                    </button>
+                 ))}
+              </div>
+           </div>
+        )}
 
-              {/* DOSSIER 3 - Marron foncé en bas à gauche */}
-              <motion.div
-                 initial={{ opacity: 0, scale: 0.95, rotateZ: 1 }}
-                 animate={{ opacity: 1, scale: 1, rotateZ: 0 }}
-                 transition={{ duration: 0.8, delay: 0.6 }}
-                 className="absolute rounded-2xl shadow-2xl overflow-hidden"
+        {/* ── TABLET + DESKTOP LAYOUT ── */}
+        {!isMobile && (
+           <div
+              style={{
+                 flex: 1,
+                 display: "flex",
+                 alignItems: "flex-start",
+                 justifyContent: "center",
+                 overflow: "hidden",
+                 backgroundImage: `url(${textureGray})`,
+                 backgroundRepeat: "repeat",
+                 backgroundSize: "cover",
+                 height: "calc(100vh - 50px)",
+              }}
+           >
+              <div
                  style={{
-                    right: "42.5%",
-                    top: "440px",
-                    width: "40%",
-                    height: "90%",
-                    backgroundColor: "#5d4a3a",
-                    zIndex: 4,
-                    transform: "rotate(-4deg)",
-                    boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
+                    width: "1200px",
+                    height: "850px",
+                    flexShrink: 0,
+                    transform:
+                       viewport === "tablet"
+                          ? `scale(${contentScale})`
+                          : undefined,
+                    transformOrigin: "top center",
+                    position: "relative",
                  }}
               >
-                 {/* Texture marron */}
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[1]"
+                 {/* DOSSIER 1 - Beige */}
+                 <motion.div
+                    initial={{ opacity: 0, x: 100, rotateZ: 5 }}
+                    animate={{ opacity: 1, x: 0, rotateZ: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="flex absolute rounded-2xl shadow-2xl overflow-hidden"
                     style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "multiply",
-                       opacity: 0.6,
-                    }}
-                 />
-
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[2]"
-                    style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "overlay",
-                       opacity: 0.3,
-                    }}
-                 />
-
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[3]"
-                    style={{
-                       background: `
-                  radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%),
-                  radial-gradient(ellipse at 85% 70%, rgba(0,0,0,0.08) 0%, transparent 30%)
-                `,
-                       mixBlendMode: "multiply",
-                    }}
-                 />
-
-                 {/* Clip/trombone doré en haut à gauche */}
-                 <div
-                    className="absolute shadow-lg rounded-sm"
-                    style={{
-                       left: "0%",
-                       top: "125px",
-                       width: "50px",
-                       height: "90px",
-                       backgroundColor: "#b8a882",
-                       zIndex: 10,
+                       right: "25.5%",
+                       top: "16px",
+                       width: "55%",
+                       height: "98%",
+                       backgroundColor: "#c9b596",
+                       zIndex: 1,
+                       transform: "rotate(-2deg)",
                     }}
                  >
                     <div
-                       className="absolute inset-0"
+                       className="absolute inset-0 pointer-events-none rounded-2xl z-[1]"
                        style={{
-                          background:
-                             "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)",
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "multiply",
+                          opacity: 0.5,
                        }}
                     />
-                 </div>
-
-                 {/* Nom en haut */}
-                 <div className="absolute top-12 left-12 text-white/80 z-10">
-                    <p
-                       className="tracking-[0.2em]"
+                    <div
+                       className="absolute inset-0 pointer-events-none rounded-2xl z-[2]"
                        style={{
-                          fontSize: "26px",
-                          paddingTop: "20px",
-                          paddingLeft: "80px",
-                          color: "white",
-                          marginBottom: "10px",
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "overlay",
+                          opacity: 0.2,
+                       }}
+                    />
+                    <div
+                       className="flex flex-col justify-center absolute inset-0 rounded-2xl pointer-events-none z-[3]"
+                       style={{
+                          background: `radial-gradient(ellipse at 15% 25%, rgba(0,0,0,0.12) 0%, transparent 25%)`,
+                          mixBlendMode: "multiply",
+                       }}
+                    />
+
+                    {/* Circle */}
+                    <div
+                       className="absolute z-10"
+                       style={{ top: "20px", left: "60px" }}
+                    >
+                       <div
+                          className="flex items-center justify-center border-4 border-white/60"
+                          style={{
+                             width: "120px",
+                             height: "120px",
+                             borderRadius: "50%",
+                             backgroundColor: "rgba(255,255,255,0.08)",
+                             boxShadow: "inset 0 0 10px rgba(0,0,0,0.2)",
+                          }}
+                       >
+                          <span
+                             style={{
+                                color: "#c9b596",
+                                fontSize: "22px",
+                                fontFamily: "serif",
+                                textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+                                textAlign: "center",
+                                padding: "0 8px",
+                             }}
+                          >
+                             @FORM
+                          </span>
+                       </div>
+                    </div>
+
+                    {/* Details — positioned right of the gray folder overlap (~342px from left) */}
+                    <div
+                       className="absolute z-10"
+                       style={{
+                          top: "20px",
+                          left: "350px",
+                          right: "20px",
+                          bottom: "20px",
+                          overflowY: "auto",
+                          color: "rgba(255,255,255,0.9)",
                        }}
                     >
-                       @&nbsp;{selectedDiplome.title}, {selectedDiplome.year}
-                    </p>
-                 </div>
+                       <p
+                          style={{
+                             fontSize: "16px",
+                             fontWeight: "700",
+                             letterSpacing: "0.15em",
+                             marginBottom: 10,
+                             color: "white",
+                          }}
+                       >
+                          DÉTAIL DU DIPLÔME
+                       </p>
+                       <p
+                          style={{
+                             fontSize: "13px",
+                             fontWeight: "600",
+                             letterSpacing: "0.12em",
+                             marginTop: 8,
+                             color: "white",
+                          }}
+                       >
+                          INSTITUTION :
+                       </p>
+                       {selectedDiplome.institution.map((inst, i) => (
+                          <p
+                             key={i}
+                             style={{
+                                fontSize: "12px",
+                                color: "rgba(255,255,255,0.85)",
+                                paddingLeft: 12,
+                             }}
+                          >
+                             • {inst}
+                          </p>
+                       ))}
+                       <p
+                          style={{
+                             fontSize: "12px",
+                             color: "rgba(255,255,255,0.85)",
+                             marginTop: 10,
+                          }}
+                       >
+                          STATUS : {selectedDiplome.status},{" "}
+                          {selectedDiplome.year}
+                       </p>
+                       <p
+                          style={{
+                             fontSize: "12px",
+                             fontWeight: "600",
+                             letterSpacing: "0.12em",
+                             marginTop: 10,
+                             color: "white",
+                          }}
+                       >
+                          COMPÉTENCES :
+                       </p>
+                       {selectedDiplome.detail.map((tech, i) => (
+                          <p
+                             key={i}
+                             style={{
+                                fontSize: "11px",
+                                color: "rgba(255,255,255,0.85)",
+                                paddingLeft: 12,
+                             }}
+                          >
+                             • {tech}
+                          </p>
+                       ))}
+                    </div>
+                 </motion.div>
 
-                 {/* Description en bas */}
-                 <div className="absolute bottom-36 left-12 right-12 z-10">
-                    <p
-                       className="text-blue/30 tracking-[0.15em] mb-8"
+                 {/* Onglets */}
+                 <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="flex absolute rounded-r-xl"
+                    style={{
+                       opacity: 0.7,
+                       flexDirection: "column",
+                       gap: "20px",
+                       padding: "8px",
+                       right: "1%",
+                       top: "50px",
+                       zIndex: -6,
+                    }}
+                 >
+                    {diplomesList.map((dip) => (
+                       <button
+                          key={dip.id}
+                          onClick={() => setSelectedDiplome(dip)}
+                          className={`w-14 h-40 flex items-center text-[11px] tracking-[0.2em] shadow-xl ${selectedDiplome.id === dip.id ? "bg-[#5d4a3a] text-white" : "bg-[#e6d8bf] text-[#5d4a3a]"}`}
+                          style={{
+                             justifyContent: "end",
+                             backgroundImage: `url(${textureBeige})`,
+                             backgroundSize: "cover",
+                             backgroundPosition: "center",
+                             textOrientation: "mixed",
+                             borderRadius: "0px 20px 20px 0px",
+                             padding: "12px",
+                             marginLeft: "10px",
+                             boxShadow: "0 0 20px rgba(0,0,0,0.1)",
+                             zIndex: 10,
+                             cursor: "pointer",
+                          }}
+                       >
+                          {dip.subtitle}
+                       </button>
+                    ))}
+                 </motion.div>
+
+                 {/* DOSSIER 2 - Gris (photo) */}
+                 <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="absolute rounded-2xl shadow-2xl overflow-hidden"
+                    style={{
+                       right: "52%",
+                       top: "180px",
+                       width: "30%",
+                       height: "38%",
+                       backgroundColor: "#a8a8a8",
+                       zIndex: 3,
+                       transform: "rotate(1deg)",
+                       boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
+                    }}
+                 >
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[1]"
                        style={{
-                          fontSize: "18px",
-                          paddingTop: "40%",
-                          paddingLeft: "80px",
+                          backgroundImage: `url(${textureGray})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "multiply",
+                          opacity: 0.5,
+                       }}
+                    />
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[2]"
+                       style={{
+                          backgroundImage: `url(${textureGray})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "overlay",
+                          opacity: 0.3,
+                       }}
+                    />
+                    <div className="absolute inset-0 flex justify-center z-10">
+                       <div
+                          style={{
+                             display: "flex",
+                             alignItems: "center",
+                             justifyContent: "flex-start",
+                             flexDirection: "column",
+                             width: "100%",
+                             padding: "0 12px",
+                          }}
+                       >
+                          <p
+                             style={{
+                                fontSize: "12px",
+                                color: "rgba(255,255,255,0.6)",
+                                letterSpacing: "0.15em",
+                                padding: "14px 0 8px",
+                             }}
+                          >
+                             FACSIMILÉ DU DIPLÔME
+                          </p>
+                          <div
+                             style={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "center",
+                                overflow: "hidden",
+                             }}
+                          >
+                             <CarrouselPhoto
+                                photos={selectedDiplome.photo}
+                                rotation={0}
+                                delay={0.2}
+                                zIndex={230}
+                                width={260}
+                                height={190}
+                             />
+                          </div>
+                       </div>
+                    </div>
+                 </motion.div>
+
+                 {/* DOSSIER 3 - Marron foncé */}
+                 <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="absolute rounded-2xl shadow-2xl overflow-hidden"
+                    style={{
+                       right: "43.5%",
+                       top: "440px",
+                       width: "40%",
+                       height: "90%",
+                       backgroundColor: "#5d4a3a",
+                       zIndex: 4,
+                       transform: "rotate(-4deg)",
+                       boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
+                    }}
+                 >
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[1]"
+                       style={{
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "multiply",
+                          opacity: 0.6,
+                       }}
+                    />
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[2]"
+                       style={{
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "overlay",
+                          opacity: 0.3,
+                       }}
+                    />
+                    <div
+                       className="absolute shadow-lg rounded-sm"
+                       style={{
+                          left: "0%",
+                          top: "125px",
+                          width: "50px",
+                          height: "90px",
+                          backgroundColor: "#b8a882",
+                          zIndex: 10,
                        }}
                     >
-                       {selectedDiplome.options}
-                    </p>
-                 </div>
-              </motion.div>
+                       <div
+                          className="absolute inset-0"
+                          style={{
+                             background:
+                                "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)",
+                          }}
+                       />
+                    </div>
+                    <div
+                       className="absolute z-10"
+                       style={{ top: "36px", left: "80px", right: "12px" }}
+                    >
+                       <p
+                          className="tracking-[0.2em]"
+                          style={{
+                             fontSize: "22px",
+                             color: "white",
+                             lineHeight: 1.3,
+                          }}
+                       >
+                          {selectedDiplome.title}
+                       </p>
+                       <p
+                          style={{
+                             fontSize: "16px",
+                             color: "rgba(255,255,255,0.7)",
+                             marginTop: 8,
+                          }}
+                       >
+                          {selectedDiplome.options?.[0]}
+                          
+                       </p>
+                    </div>
+                    
+                 </motion.div>
 
-              {/* DOSSIER 4 - Arrière-plan beige clair en bas */}
-              <motion.div
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ duration: 0.8, delay: 0.8 }}
-                 className="absolute rounded-2xl shadow-xl overflow-hidden z-20"
-                 style={{
-                    right: "24.5%",
-                    top: "20px",
-                    width: "51%",
-                    height: "98%",
-                    backgroundColor: "#d4c4a8",
-                    zIndex: 0,
-                    transform: "rotate(0deg)",
-                    boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
-                 }}
-              >
-                 {/* Texture */}
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[1]"
+                 {/* DOSSIER 4 - Arrière-plan */}
+                 <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="absolute rounded-2xl shadow-xl overflow-hidden"
                     style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "multiply",
-                       opacity: 0.4,
+                       right: "24.5%",
+                       top: "20px",
+                       width: "51%",
+                       height: "98%",
+                       backgroundColor: "#d4c4a8",
+                       zIndex: 0,
+                       boxShadow: "10px 0px 20px rgba(0,0,0,0.5)",
                     }}
-                 />
-
-                 <div
-                    className="absolute inset-0 pointer-events-none z-[2]"
-                    style={{
-                       backgroundImage: `url(${textureBeige})`,
-                       backgroundSize: "cover",
-                       backgroundPosition: "center",
-                       mixBlendMode: "overlay",
-                       opacity: 0.2,
-                    }}
-                 />
-              </motion.div>
+                 >
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[1]"
+                       style={{
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "multiply",
+                          opacity: 0.4,
+                       }}
+                    />
+                    <div
+                       className="absolute inset-0 pointer-events-none z-[2]"
+                       style={{
+                          backgroundImage: `url(${textureBeige})`,
+                          backgroundSize: "cover",
+                          mixBlendMode: "overlay",
+                          opacity: 0.2,
+                       }}
+                    />
+                 </motion.div>
+              </div>
            </div>
-        </div>
+        )}
      </div>
   );
 }

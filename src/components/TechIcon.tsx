@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 interface TechIconProps {
   src: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function TechIcon({ src, className = "" }: TechIconProps) {
+export function TechIcon({ src, className = "", style }: TechIconProps) {
   const [svgContent, setSvgContent] = useState<string>("");
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export function TechIcon({ src, className = "" }: TechIconProps) {
   return (
     <span
       className={className}
+      style={style}
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
   );

@@ -8,6 +8,8 @@ interface PhotosProps {
   photos: string[];
   delay?: number;
   zIndex?: number;
+  width?: number;
+  height?: number;
 }
 
 export function CarrouselPhoto({
@@ -15,6 +17,8 @@ export function CarrouselPhoto({
   photos,
   delay = 0,
   zIndex = 10,
+  width = 300,
+  height = 240,
 }: PhotosProps) {
   const [index, setIndex] = useState(0);
   
@@ -39,46 +43,39 @@ export function CarrouselPhoto({
       >
         {/* PHOTOS */}
         <div
-          className="overflow-hidden shadow-2xl rounded-x2 p-3"
+          className="overflow-hidden shadow-2xl"
           style={{
-            //padding: "10px",
-            width: "300px",
-            height: "240px",
+            width: `${width}px`,
+            height: `${height}px`,
             transform: `rotate(${rotation}deg)`,
-            //borderRadius: '16px',
             opacity: 0.95,
+            borderRadius: '8px',
           }}
         >
-          {/* Image */}
           <div
-            className="overflow-hidden rounded-md bg-black/10"
+            className="overflow-hidden"
             style={{
-              width: "100%",
-              height: "240px",
-              position: "relative",
-              borderRadius: '5px',
-              padding: '10px',
-              
+              width: '100%',
+              height: `${height}px`,
+              position: 'relative',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(0,0,0,0.08)',
             }}
           >
             <AnimatePresence mode="wait">
               <motion.img
                 key={photos[index]}
                 src={photos[index]}
-                className=" w-full h-full object-cover"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                }}
+                loading="lazy"
+                className="w-full h-full object-contain"
+                style={{ position: 'absolute', top: 0, left: 0 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.5 }}
               />
             </AnimatePresence>
           </div>
-
         </div>
       </motion.div>
 

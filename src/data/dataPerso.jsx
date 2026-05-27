@@ -286,9 +286,9 @@ const DataPerso = {
             "Écrire la documentation technique de votre projet avec Markdown Editor Dillinger.io",
          ],
 
-         githubcode: "https://github.com/PA-MAI/HRnet",
+         githubcode: "",
          githubpage: "",
-         soutenance: soutenanceHRNet,
+         soutenance: "",
          githubIcon: githubIcon,
          pdfIcon: pdfIcon,
          img: activonsnous,
@@ -296,12 +296,11 @@ const DataPerso = {
       {
          id: 1,
          title: "Portfolio-app",
-         subtitle:
-            "application compétences et projets personnels",
+         subtitle: "application compétences et projets personnels",
          description:
             "Création de ce portfolio interactif avec React,tailwind et TypeScript",
-         color: "#c9b596",
-         technologies: ["React", "TypeScript", "Tailwind CSS"],
+         color: "#5d4a3a",
+         technologies: ["React", "TypeScript", "Tailwind CSS, Redux"],
          status: "En cours",
          contexte:
             " Contacts, SoftSkills, technologie et présentation des projets, des diplomes et des expériences professionnelles, avec des liens vers les soutenances, les codes sources et les pages de présentation de chaque projet",
@@ -606,10 +605,10 @@ const DataPerso = {
       },
       {
          id: 12,
-         title: "Consultant en gestion de parc informatique",
+         title: "Consultant en gestion de parc",
          company: "L'Oréal Paris et Villeparisis ",
          duration: "2006-2007",
-         detail: "Responsable des équipes de support et du changement",
+         detail: "Responsable des équipes de support et du changement, gestion de parc informatique et gestion du changement (TCO)",
          certificat: img7,
          status: "intérim puis consultant",
          technologies: [

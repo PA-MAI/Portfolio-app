@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -24,7 +25,9 @@ export default function FullscreenPolaroid({
   const next = () =>
     setIndex((i) => (i + 1) % photos.length);
 
-  return (
+  // Portal : échappe au contexte transform du parent pour que position:fixed
+  // soit bien relatif au viewport et non à l'ancêtre transformé (scale mobile)
+  return ReactDOM.createPortal(
     <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -32,8 +35,8 @@ export default function FullscreenPolaroid({
         style={{
           position: 'fixed',
           inset: 0,
-            zIndex: 9999,
-          
+          zIndex: 9999,
+          paddingTop: '60px',
         }}
       onClick={onClose}
     >
@@ -95,6 +98,6 @@ export default function FullscreenPolaroid({
         </div>
 
       </motion.div>
-    </motion.div>
-  );
+    </motion.div>,
+  document.body);
 }

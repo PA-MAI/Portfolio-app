@@ -62,7 +62,7 @@ export function CardStack({
 
   const radius = 160;
   const angleStep = 25;
-  const baseTilt = -15;
+  const baseTilt = rotation;
 
   return (
     <motion.div

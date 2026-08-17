@@ -51,15 +51,14 @@
             "vaul": "^1.1.2"
       },
       "engines": {
-            "node": "20.x"
+            "node": "24.x"
       },
       "devDependencies": {
-            "@types/node": "^20.10.0",
+            "@types/node": "^24.0.0",
             "@types/react": "^19.2.7",
             "@types/react-dom": "^19.2.3",
             "@vitejs/plugin-react-swc": "^3.10.2",
             "gh-pages": "^6.3.0",
-            "tslint": "^5.20.1",
             "typescript": "^5.9.3",
             "vite": "^6.4.1"
       },
